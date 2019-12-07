@@ -62,6 +62,7 @@ open class ExpandableTextView: UITextView {
         self.updateBoundsToFitSize()
         self.configurePlaceholder()
         self.updatePlaceholderVisibility()
+        
     }
 
     open override func didMoveToWindow() {
@@ -77,6 +78,9 @@ open class ExpandableTextView: UITextView {
     override open func layoutSubviews() {
         super.layoutSubviews()
         self.placeholder.frame = self.bounds
+        self.layer.cornerRadius = self.bounds.midY
+        self.layer.borderColor = UIColor.lightGray.cgColor
+        self.layer.borderWidth = 0.5
     }
 
     override open var intrinsicContentSize: CGSize {

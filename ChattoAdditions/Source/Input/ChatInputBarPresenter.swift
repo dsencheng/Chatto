@@ -163,7 +163,7 @@ extension BasicChatInputBarPresenter {
         self.focusedItem = nil
         self.chatInputBar.textView.inputView = nil
         self.chatInputBar.showsTextView = true
-        self.chatInputBar.showsSendButton = true
+//        self.chatInputBar.showsSendButton = true
     }
 
     public func onDidBeginEditing() {
@@ -186,7 +186,7 @@ extension BasicChatInputBarPresenter {
         guard item !== self.focusedItem else { return }
 
         self.focusedItem = item
-        self.chatInputBar.showsSendButton = item.showsSendButton
+//        self.chatInputBar.showsSendButton = item.showsSendButton
         self.chatInputBar.showsTextView = item.presentationMode == .keyboard
         self.updateFirstResponderWithInputItem(item)
     }

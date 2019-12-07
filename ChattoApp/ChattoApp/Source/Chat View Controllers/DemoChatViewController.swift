@@ -56,7 +56,11 @@ class DemoChatViewController: BaseChatViewController {
         let chatInputView = ChatInputBar.loadNib()
         var appearance = ChatInputBarAppearance()
         appearance.sendButtonAppearance.title = NSLocalizedString("Send", comment: "")
+        appearance.sendButtonAppearance.normalImage = UIImage(named: "ic_chat_dialogue_send_n")
+        appearance.sendButtonAppearance.disabledImage = UIImage(named: "ic_chat_dialogue_send_p")
+        appearance.sendButtonAppearance.backgroundColor = .orange
         appearance.textInputAppearance.placeholderText = NSLocalizedString("Type a message", comment: "")
+        
         if self.shouldUseAlternativePresenter {
             let chatInputPresenter = ExpandableChatInputBarPresenter(
                 inputPositionController: self,

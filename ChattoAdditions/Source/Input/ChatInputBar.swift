@@ -59,13 +59,15 @@ open class ChatInputBar: ReusableXibView {
     @IBOutlet weak var scrollView: HorizontalStackScrollView!
     @IBOutlet weak var textView: ExpandableTextView!
     @IBOutlet weak var sendButton: UIButton!
+    //顶部线
     @IBOutlet weak var topBorderHeightConstraint: NSLayoutConstraint!
-
+    
+    @IBOutlet weak var inputContainerViewHeight: NSLayoutConstraint!
+    //item 容器顶部，可控制遮盖输入框
     @IBOutlet var constraintsForHiddenTextView: [NSLayoutConstraint]!
-    @IBOutlet var constraintsForVisibleTextView: [NSLayoutConstraint]!
+//    @IBOutlet var constraintsForVisibleTextView: [NSLayoutConstraint]!
 
-    @IBOutlet var constraintsForVisibleSendButton: [NSLayoutConstraint]!
-    @IBOutlet var constraintsForHiddenSendButton: [NSLayoutConstraint]!
+    //input item 容器高度
     @IBOutlet var tabBarContainerHeightConstraint: NSLayoutConstraint!
 
     class open func loadNib() -> ChatInputBar {
@@ -91,19 +93,18 @@ open class ChatInputBar: ReusableXibView {
 
     open override func updateConstraints() {
         if self.showsTextView {
-            NSLayoutConstraint.activate(self.constraintsForVisibleTextView)
+//            NSLayoutConstraint.activate(self.constraintsForVisibleTextView)
             NSLayoutConstraint.deactivate(self.constraintsForHiddenTextView)
         } else {
-            NSLayoutConstraint.deactivate(self.constraintsForVisibleTextView)
+//            NSLayoutConstraint.deactivate(self.constraintsForVisibleTextView)
             NSLayoutConstraint.activate(self.constraintsForHiddenTextView)
         }
-        if self.showsSendButton {
-            NSLayoutConstraint.deactivate(self.constraintsForHiddenSendButton)
-            NSLayoutConstraint.activate(self.constraintsForVisibleSendButton)
-        } else {
-            NSLayoutConstraint.deactivate(self.constraintsForVisibleSendButton)
-            NSLayoutConstraint.activate(self.constraintsForHiddenSendButton)
-        }
+//        if self.showsSendButton {
+//            NSLayoutConstraint.activate(self.constraintsForVisibleSendButton)
+//        } else {
+//            NSLayoutConstraint.deactivate(self.constraintsForVisibleSendButton)
+//
+//        }
         super.updateConstraints()
     }
 
@@ -115,13 +116,13 @@ open class ChatInputBar: ReusableXibView {
         }
     }
 
-    open var showsSendButton: Bool = true {
-        didSet {
-            self.setNeedsUpdateConstraints()
-            self.setNeedsLayout()
-            self.updateIntrinsicContentSizeAnimated()
-        }
-    }
+//    open var showsSendButton: Bool = true {
+//        didSet {
+//            self.setNeedsUpdateConstraints()
+//            self.setNeedsLayout()
+//            self.updateIntrinsicContentSizeAnimated()
+//        }
+//    }
 
     public var maxCharactersCount: UInt? // nil -> unlimited
 
@@ -242,9 +243,15 @@ extension ChatInputBar {
         appearance.sendButtonAppearance.titleColors.forEach { (state, color) in
             self.sendButton.setTitleColor(color, for: state.controlState)
         }
+        self.sendButton.setImage(appearance.sendButtonAppearance.normalImage, for: .normal)
+        self.sendButton.setImage(appearance.sendButtonAppearance.highlightedImage, for: .highlighted)
+        self.sendButton.setImage(appearance.sendButtonAppearance.selectedImage, for: .selected)
+        self.sendButton.setImage(appearance.sendButtonAppearance.disabledImage, for: .disabled)
         self.sendButton.titleLabel?.font = appearance.sendButtonAppearance.font
+        self.sendButton.backgroundColor = appearance.sendButtonAppearance.backgroundColor
         self.sendButton.accessibilityIdentifier = appearance.sendButtonAppearance.accessibilityIdentifier
         self.tabBarContainerHeightConstraint.constant = appearance.tabBarAppearance.height
+        self.inputContainerViewHeight.constant = appearance.textInputAppearance.height
     }
 }
 

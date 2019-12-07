@@ -35,6 +35,11 @@ public struct ChatInputBarAppearance {
             UIControlStateWrapper(state: .highlighted): UIColor.bma_color(rgb: 0x007AFF).bma_blendWithColor(UIColor.white.withAlphaComponent(0.4))
         ]
         public let accessibilityIdentifier = "chatto.inputbar.button.send"
+        public var backgroundColor = UIColor.clear
+        public var normalImage : UIImage?
+        public var highlightedImage : UIImage?
+        public var disabledImage : UIImage?
+        public var selectedImage : UIImage?
     }
 
     public struct TabBarAppearance {
@@ -53,6 +58,7 @@ public struct ChatInputBarAppearance {
         public var placeholderColor = UIColor.gray
         public var placeholderText = ""
         public var textInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
+        public var height: CGFloat = 52
         public let accessibilityIdentifier = "chatto.inputbar.inputfield.text"
     }
 
