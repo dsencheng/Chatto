@@ -16,12 +16,24 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VEc-z3-OQW" userLabel="Input View container">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="52"/>
                     <subviews>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fsh-hH-hKG" userLabel="TextView" customClass="ExpandableTextView" customModule="ChattoAdditions" customModuleProvider="target">
-                            <rect key="frame" x="12" y="8" width="532" height="36"/>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                        </textView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hHg-ZO-47L">
+                            <rect key="frame" x="8" y="9" width="532" height="35"/>
+                            <subviews>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fsh-hH-hKG" userLabel="TextView" customClass="ExpandableTextView" customModule="ChattoAdditions" customModuleProvider="target">
+                                    <rect key="frame" x="10" y="5" width="512" height="25"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstItem="fsh-hH-hKG" firstAttribute="leading" secondItem="hHg-ZO-47L" secondAttribute="leading" constant="10" id="6VG-bL-84u"/>
+                                <constraint firstAttribute="bottom" secondItem="fsh-hH-hKG" secondAttribute="bottom" constant="5" id="80u-LR-FSP"/>
+                                <constraint firstItem="fsh-hH-hKG" firstAttribute="top" secondItem="hHg-ZO-47L" secondAttribute="top" constant="5" id="KLw-Sy-8aj"/>
+                                <constraint firstAttribute="trailing" secondItem="fsh-hH-hKG" secondAttribute="trailing" constant="10" id="leA-rQ-TwB"/>
+                            </constraints>
+                        </view>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hE9-hU-Ci1">
                             <rect key="frame" x="552" y="4" width="40" height="40"/>
                             <constraints>
@@ -37,13 +49,13 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
-                        <constraint firstItem="hE9-hU-Ci1" firstAttribute="leading" secondItem="fsh-hH-hKG" secondAttribute="trailing" constant="8" id="8oE-f9-uGs"/>
                         <constraint firstAttribute="bottom" secondItem="hE9-hU-Ci1" secondAttribute="bottom" constant="8" id="CNk-RQ-ItU"/>
                         <constraint firstAttribute="trailing" secondItem="hE9-hU-Ci1" secondAttribute="trailing" constant="8" id="H9M-P3-LKQ"/>
-                        <constraint firstAttribute="bottom" secondItem="fsh-hH-hKG" secondAttribute="bottom" constant="8" id="Kv4-fG-M9e"/>
-                        <constraint firstItem="fsh-hH-hKG" firstAttribute="top" secondItem="VEc-z3-OQW" secondAttribute="top" constant="8" id="Uo7-mm-6Y9"/>
-                        <constraint firstAttribute="height" constant="52" id="VMh-Hr-iBB"/>
-                        <constraint firstItem="fsh-hH-hKG" firstAttribute="leading" secondItem="VEc-z3-OQW" secondAttribute="leading" constant="12" id="krQ-TC-1Ty"/>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="Mhs-He-CVf"/>
+                        <constraint firstItem="hHg-ZO-47L" firstAttribute="leading" secondItem="VEc-z3-OQW" secondAttribute="leading" constant="8" id="ph4-jF-OY9"/>
+                        <constraint firstItem="hHg-ZO-47L" firstAttribute="top" secondItem="VEc-z3-OQW" secondAttribute="top" constant="9" id="q6O-hq-qvp"/>
+                        <constraint firstAttribute="bottom" secondItem="hHg-ZO-47L" secondAttribute="bottom" constant="8" id="qDq-8I-Spn"/>
+                        <constraint firstItem="hE9-hU-Ci1" firstAttribute="leading" secondItem="hHg-ZO-47L" secondAttribute="trailing" constant="12" id="sUA-QT-vQ3"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hkz-tq-X6j" userLabel="Tab selector container">
@@ -94,15 +106,15 @@
                 </mask>
             </variation>
             <connections>
-                <outlet property="inputContainerViewHeight" destination="VMh-Hr-iBB" id="t6a-Pq-K53"/>
                 <outlet property="scrollView" destination="WNX-pj-5AB" id="Qqy-Ny-mng"/>
                 <outlet property="sendButton" destination="hE9-hU-Ci1" id="VFQ-Pb-J37"/>
                 <outlet property="tabBarContainerHeightConstraint" destination="vwa-F7-EIB" id="d3G-fs-hEH"/>
+                <outlet property="textRoundView" destination="hHg-ZO-47L" id="eC6-CS-eNb"/>
                 <outlet property="textView" destination="fsh-hH-hKG" id="QMH-G9-ADs"/>
                 <outlet property="topBorderHeightConstraint" destination="IIv-qg-Tlp" id="qiB-dH-AHS"/>
                 <outletCollection property="constraintsForHiddenTextView" destination="gpt-vU-KzZ" collectionClass="NSMutableArray" id="EzL-hX-Wle"/>
             </connections>
-            <point key="canvasLocation" x="-341" y="68.5"/>
+            <point key="canvasLocation" x="-342.02898550724638" y="67.96875"/>
         </view>
     </objects>
 </document>

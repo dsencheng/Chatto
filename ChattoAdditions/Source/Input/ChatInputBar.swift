@@ -57,12 +57,12 @@ open class ChatInputBar: ReusableXibView {
     }
 
     @IBOutlet weak var scrollView: HorizontalStackScrollView!
+    @IBOutlet weak var textRoundView: UIView!
     @IBOutlet weak var textView: ExpandableTextView!
     @IBOutlet weak var sendButton: UIButton!
     //顶部线
     @IBOutlet weak var topBorderHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var inputContainerViewHeight: NSLayoutConstraint!
     //item 容器顶部，可控制遮盖输入框
     @IBOutlet var constraintsForHiddenTextView: [NSLayoutConstraint]!
 //    @IBOutlet var constraintsForVisibleTextView: [NSLayoutConstraint]!
@@ -89,6 +89,9 @@ open class ChatInputBar: ReusableXibView {
         self.textView.placeholderDelegate = self
         self.scrollView.scrollsToTop = false
         self.sendButton.isEnabled = false
+        self.textRoundView.layer.cornerRadius = 20
+        self.textRoundView.layer.borderWidth = 0.5
+        self.textRoundView.layer.borderColor = UIColor.lightGray.cgColor
     }
 
     open override func updateConstraints() {
@@ -251,7 +254,7 @@ extension ChatInputBar {
         self.sendButton.backgroundColor = appearance.sendButtonAppearance.backgroundColor
         self.sendButton.accessibilityIdentifier = appearance.sendButtonAppearance.accessibilityIdentifier
         self.tabBarContainerHeightConstraint.constant = appearance.tabBarAppearance.height
-        self.inputContainerViewHeight.constant = appearance.textInputAppearance.height
+        
     }
 }
 

@@ -47,8 +47,10 @@ final class DemoChatItemsDecorator: ChatItemsDecoratorProtocol {
             let prev: ChatItemProtocol? = (index > 0) ? chatItems[index - 1] : nil
 
             let bottomMargin = self.separationAfterItem(chatItem, next: next)
+            //显示气泡尾巴，以及头像
             var showsTail = false
             var additionalItems =  [DecoratedChatItem]()
+            //添加日期分隔
             var addTimeSeparator = false
             var isSelected = false
             var isShowingSelectionIndicator = false

@@ -58,11 +58,12 @@ open class ExpandableTextView: UITextView {
     }
 
     private func commonInit() {
+        self.isScrollEnabled = true
+        self.scrollsToTop = false
         NotificationCenter.default.addObserver(self, selector: #selector(ExpandableTextView.textDidChange), name: UITextView.textDidChangeNotification, object: self)
         self.updateBoundsToFitSize()
         self.configurePlaceholder()
         self.updatePlaceholderVisibility()
-        
     }
 
     open override func didMoveToWindow() {
@@ -78,9 +79,7 @@ open class ExpandableTextView: UITextView {
     override open func layoutSubviews() {
         super.layoutSubviews()
         self.placeholder.frame = self.bounds
-        self.layer.cornerRadius = self.bounds.midY
-        self.layer.borderColor = UIColor.lightGray.cgColor
-        self.layer.borderWidth = 0.5
+        self.tintColor = .orange
     }
 
     override open var intrinsicContentSize: CGSize {
@@ -147,17 +146,17 @@ open class ExpandableTextView: UITextView {
     }
 
     @objc func textDidChange() {
-        self.updateBoundsToFitSize()
+//        self.updateBoundsToFitSize()
         self.updatePlaceholderVisibility()
-        self.scrollToCaret()
+//        self.scrollToCaret()
 
         // Bugfix:
         // 1. Open keyboard
         // 2. Paste very long text (so it snaps to nav bar and shows scroll indicators)
         // 3. Select all and cut
         // 4. Paste again: Texview it's smaller than it should be
-        self.isScrollEnabled = false
-        self.isScrollEnabled = true
+//        self.isScrollEnabled = false
+//        self.isScrollEnabled = true
     }
 
     // MARK: - UIResponder
@@ -200,8 +199,10 @@ open class ExpandableTextView: UITextView {
         if let textRange = self.selectedTextRange {
             var rect = caretRect(for: textRange.end)
             rect = CGRect(origin: rect.origin, size: CGSize(width: rect.width, height: rect.height + textContainerInset.bottom))
-
             self.scrollRectToVisible(rect, animated: false)
+//            if textRange.end == self.endOfDocument, self.text.count > 1 {
+//                self.scrollRangeToVisible(NSMakeRange(self.text.count - 1, 1))
+//            }
         }
     }
 
