@@ -59,10 +59,17 @@ final class DemoChatItemsDecorator: ChatItemsDecoratorProtocol {
                 } else {
                     showsTail = true
                 }
-
+                //MARK : 修改日期分隔
+//                if let previousMessage = prev as? MessageModelProtocol {
+//                    addTimeSeparator = !calendar.isDate(currentMessage.date, inSameDayAs: previousMessage.date)
+//                } else {
+//                    addTimeSeparator = true
+//                }
+                
                 if let previousMessage = prev as? MessageModelProtocol {
-                    addTimeSeparator = !calendar.isDate(currentMessage.date, inSameDayAs: previousMessage.date)
-                } else {
+                    //测试超过5分钟插入一个
+//                    let interval = currentMessage.date.timeIntervalSince(previousMessage.date)
+//                    addTimeSeparator = interval > 300.0
                     addTimeSeparator = true
                 }
 
@@ -118,8 +125,9 @@ final class DemoChatItemsDecorator: ChatItemsDecoratorProtocol {
             return Constants.shortSeparation
         }
     }
-
+    //MARK : 修改发送失败文字状态
     private func showsStatusForMessage(_ message: MessageModelProtocol) -> Bool {
-        return message.status == .failed || message.status == .sending
+        return false
+//        return message.status == .failed || message.status == .sending
     }
 }
