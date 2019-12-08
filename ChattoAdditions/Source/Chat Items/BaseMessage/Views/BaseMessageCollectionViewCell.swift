@@ -218,6 +218,7 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: UICollectionViewCell, 
 
     public private(set) lazy var failedButton: UIButton = {
         let button = UIButton(type: .custom)
+//        button.backgroundColor = .orange
         button.addTarget(self, action: #selector(BaseMessageCollectionViewCell.failedButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -485,35 +486,28 @@ private struct Layout {
 
         currentX += self.selectionIndicatorFrame.maxX
 
+        //MARK : 修改 failed button 位置
         if isIncoming {
             currentX += horizontalMargin
             self.avatarViewFrame.origin.x = currentX
+            self.failedButtonFrame.origin.x = currentX
             currentX += avatarSize.width
-            if isShowingFailedButton {
-                currentX += horizontalInterspacing
-                self.failedButtonFrame.origin.x = currentX
-                currentX += failedButtonSize.width
-                currentX += horizontalInterspacing
-            } else {
-                self.failedButtonFrame.origin.x = currentX - failedButtonSize.width
-                currentX += horizontalInterspacing
-            }
+            currentX += horizontalInterspacing
             self.bubbleViewFrame.origin.x = currentX
+            if isShowingFailedButton {
+                self.failedButtonFrame.origin.x = self.bubbleViewFrame.maxX + horizontalInterspacing
+            }
         } else {
             currentX = containerRect.maxX - horizontalMargin
             currentX -= avatarSize.width
             self.avatarViewFrame.origin.x = currentX
-            if isShowingFailedButton {
-                currentX -= horizontalInterspacing
-                currentX -= failedButtonSize.width
-                self.failedButtonFrame.origin.x = currentX
-                currentX -= horizontalInterspacing
-            } else {
-                self.failedButtonFrame.origin.x = currentX
-                currentX -= horizontalInterspacing
-            }
+            self.failedButtonFrame.origin.x = currentX
+            currentX -= horizontalInterspacing
             currentX -= bubbleSize.width
             self.bubbleViewFrame.origin.x = currentX
+            if isShowingFailedButton {
+                self.failedButtonFrame.origin.x = self.bubbleViewFrame.minX - horizontalInterspacing - failedButtonSize.width
+            }
         }
 
         self.size = containerRect.size
@@ -527,7 +521,7 @@ private struct LayoutParameters {
     let horizontalInterspacing: CGFloat
     let maxContainerWidthPercentageForBubbleView: CGFloat // in [0, 1]
     let bubbleView: UIView
-    let isIncoming: Bool
+    let isIncoming: Bool    //收到的消息
     let isShowingFailedButton: Bool
     let failedButtonSize: CGSize
     let avatarSize: CGSize
