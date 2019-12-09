@@ -36,11 +36,12 @@ protocol ChatInputBarPresenter: class {
 @objc
 public class BasicChatInputBarPresenter: NSObject, ChatInputBarPresenter {
     public let chatInputBar: ChatInputBar
+    public var textInputDefaultHandler: ((String) -> Void)?
     let chatInputItems: [ChatInputItemProtocol]
     let notificationCenter: NotificationCenter
 
     public init(chatInputBar: ChatInputBar,
-                chatInputItems: [ChatInputItemProtocol],
+                chatInputItems: [ChatInputItemProtocol] = [],
                 chatInputBarAppearance: ChatInputBarAppearance,
                 notificationCenter: NotificationCenter = NotificationCenter.default) {
         self.chatInputBar = chatInputBar
@@ -175,10 +176,15 @@ extension BasicChatInputBarPresenter {
     func onSendButtonPressed() {
         if let focusedItem = self.focusedItem {
             focusedItem.handleInput(self.chatInputBar.inputText as AnyObject)
+            self.chatInputBar.inputText = ""
         } else if let keyboardItem = self.firstKeyboardInputItem() {
             keyboardItem.handleInput(self.chatInputBar.inputText as AnyObject)
+            self.chatInputBar.inputText = ""
+        } else if let handle = self.textInputDefaultHandler {
+            handle(self.chatInputBar.inputText)
+            self.chatInputBar.inputText = ""
         }
-        self.chatInputBar.inputText = ""
+        
     }
 
     func onDidReceiveFocusOnItem(_ item: ChatInputItemProtocol) {

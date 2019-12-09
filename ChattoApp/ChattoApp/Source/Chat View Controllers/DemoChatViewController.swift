@@ -62,7 +62,7 @@ class DemoChatViewController: BaseChatViewController {
         appearance.sendButtonAppearance.disabledImage = UIImage(named: "ic_chat_dialogue_send_p")
 //        appearance.sendButtonAppearance.backgroundColor = .orange
         appearance.textInputAppearance.placeholderText = NSLocalizedString("Type a message...", comment: "")
-        
+//        appearance.tabBarAppearance.height = 0.0
         if self.shouldUseAlternativePresenter {
             let chatInputPresenter = ExpandableChatInputBarPresenter(
                 inputPositionController: self,
@@ -73,11 +73,16 @@ class DemoChatViewController: BaseChatViewController {
             self.keyboardEventsHandler = chatInputPresenter
             self.scrollViewEventsHandler = chatInputPresenter
         } else {
-            self.chatInputPresenter = BasicChatInputBarPresenter(chatInputBar: chatInputView, chatInputItems: self.createChatInputItems(), chatInputBarAppearance: appearance)
-            
+            let chatInputPresenter = BasicChatInputBarPresenter(
+                chatInputBar: chatInputView,
+//                chatInputItems: self.createChatInputItems(),
+                chatInputBarAppearance: appearance)
+            chatInputPresenter.textInputDefaultHandler = {[weak self] text in
+                self?.dataSource.addTextMessage(text)
+            }
+            self.chatInputPresenter = chatInputPresenter
         }
         chatInputView.maxCharactersCount = 1000
-        chatInputView.delegate = self
         return chatInputView
     }
 

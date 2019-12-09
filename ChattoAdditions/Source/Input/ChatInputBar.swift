@@ -69,6 +69,8 @@ open class ChatInputBar: ReusableXibView {
 
     //input item 容器高度
     @IBOutlet var tabBarContainerHeightConstraint: NSLayoutConstraint!
+    
+    fileprivate var tabBarHeight : CGFloat = 0
 
     class open func loadNib() -> ChatInputBar {
         let view = Bundle(for: self).loadNibNamed(self.nibName(), owner: nil, options: nil)!.first as! ChatInputBar
@@ -151,6 +153,12 @@ open class ChatInputBar: ReusableXibView {
                 return inputItemView
             }
             self.scrollView.addArrangedViews(inputItemViews)
+            if inputItemViews.count > 0 {
+                self.tabBarContainerHeightConstraint.constant = tabBarHeight
+            } else {
+                self.tabBarContainerHeightConstraint.constant = 0.0
+            }
+            self.updateConstraints()
         }
     }
 
@@ -254,7 +262,7 @@ extension ChatInputBar {
         self.sendButton.backgroundColor = appearance.sendButtonAppearance.backgroundColor
         self.sendButton.accessibilityIdentifier = appearance.sendButtonAppearance.accessibilityIdentifier
         self.tabBarContainerHeightConstraint.constant = appearance.tabBarAppearance.height
-        
+        self.tabBarHeight = appearance.tabBarAppearance.height
     }
 }
 

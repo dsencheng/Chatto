@@ -268,10 +268,12 @@ extension ExpandableChatInputBarPresenter {
     func onSendButtonPressed() {
         if let focusedItem = self.focusedItem {
             focusedItem.handleInput(self.chatInputBar.inputText as AnyObject)
+            self.chatInputBar.inputText = ""
         } else if let keyboardItem = self.firstKeyboardInputItem() {
             keyboardItem.handleInput(self.chatInputBar.inputText as AnyObject)
+            self.chatInputBar.inputText = ""
         }
-        self.chatInputBar.inputText = ""
+        
     }
 
     func onDidReceiveFocusOnItem(_ item: ChatInputItemProtocol) {
