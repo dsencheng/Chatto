@@ -486,7 +486,8 @@ private struct Layout {
 
         currentX += self.selectionIndicatorFrame.maxX
 
-        //MARK : 修改 failed button 位置
+        //MARK: 固定 failed button 位置
+        //固定位置避免 button 出现移动动画
         if isIncoming {
             currentX += horizontalMargin
             self.avatarViewFrame.origin.x = currentX
@@ -494,9 +495,9 @@ private struct Layout {
             currentX += avatarSize.width
             currentX += horizontalInterspacing
             self.bubbleViewFrame.origin.x = currentX
-            if isShowingFailedButton {
+//            if isShowingFailedButton {
                 self.failedButtonFrame.origin.x = self.bubbleViewFrame.maxX + horizontalInterspacing
-            }
+//            }
         } else {
             currentX = containerRect.maxX - horizontalMargin
             currentX -= avatarSize.width
@@ -505,9 +506,9 @@ private struct Layout {
             currentX -= horizontalInterspacing
             currentX -= bubbleSize.width
             self.bubbleViewFrame.origin.x = currentX
-            if isShowingFailedButton {
+//            if isShowingFailedButton {
                 self.failedButtonFrame.origin.x = self.bubbleViewFrame.minX - horizontalInterspacing - failedButtonSize.width
-            }
+//            }
         }
 
         self.size = containerRect.size

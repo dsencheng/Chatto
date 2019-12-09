@@ -55,11 +55,13 @@ class DemoChatViewController: BaseChatViewController {
     override func createChatInputView() -> UIView {
         let chatInputView = ChatInputBar.loadNib()
         var appearance = ChatInputBarAppearance()
-        appearance.sendButtonAppearance.title = NSLocalizedString("Send", comment: "")
+//        appearance.sendButtonAppearance.title = NSLocalizedString("Send", comment: "")
         appearance.sendButtonAppearance.normalImage = UIImage(named: "ic_chat_dialogue_send_n")
+        appearance.sendButtonAppearance.selectedImage = UIImage(named: "ic_chat_dialogue_send_n")
+        appearance.sendButtonAppearance.highlightedImage = UIImage(named: "ic_chat_dialogue_send_n")
         appearance.sendButtonAppearance.disabledImage = UIImage(named: "ic_chat_dialogue_send_p")
-        appearance.sendButtonAppearance.backgroundColor = .orange
-        appearance.textInputAppearance.placeholderText = NSLocalizedString("Type a message", comment: "")
+//        appearance.sendButtonAppearance.backgroundColor = .orange
+        appearance.textInputAppearance.placeholderText = NSLocalizedString("Type a message...", comment: "")
         
         if self.shouldUseAlternativePresenter {
             let chatInputPresenter = ExpandableChatInputBarPresenter(
@@ -72,8 +74,10 @@ class DemoChatViewController: BaseChatViewController {
             self.scrollViewEventsHandler = chatInputPresenter
         } else {
             self.chatInputPresenter = BasicChatInputBarPresenter(chatInputBar: chatInputView, chatInputItems: self.createChatInputItems(), chatInputBarAppearance: appearance)
+            
         }
         chatInputView.maxCharactersCount = 1000
+        chatInputView.delegate = self
         return chatInputView
     }
 
@@ -166,4 +170,51 @@ extension CompoundBubbleLayoutProvider.Dimensions {
     static var defaultDimensions: CompoundBubbleLayoutProvider.Dimensions {
         return .init(spacing: 8, contentInsets: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8))
     }
+}
+
+extension DemoChatViewController : ChatInputBarDelegate {
+    func inputBarShouldBeginTextEditing(_ inputBar: ChatInputBar) -> Bool {
+        return true
+    }
+    
+    func inputBarDidBeginEditing(_ inputBar: ChatInputBar) {
+        
+    }
+    
+    func inputBarDidEndEditing(_ inputBar: ChatInputBar) {
+        
+    }
+    
+    func inputBarDidChangeText(_ inputBar: ChatInputBar) {
+        
+    }
+    
+    func inputBarSendButtonPressed(_ inputBar: ChatInputBar) {
+//        let text = inputBar.inputText
+//        self.dataSource.addTextMessage(text)
+//        inputBar.inputText = ""
+    }
+    
+    func inputBar(_ inputBar: ChatInputBar, shouldFocusOnItem item: ChatInputItemProtocol) -> Bool {
+        return true
+    }
+    
+    func inputBar(_ inputBar: ChatInputBar, didLoseFocusOnItem item: ChatInputItemProtocol) {
+        
+    }
+    
+    func inputBar(_ inputBar: ChatInputBar, didReceiveFocusOnItem item: ChatInputItemProtocol) {
+        
+    }
+    
+    func inputBarDidShowPlaceholder(_ inputBar: ChatInputBar) {
+        
+    }
+    
+    func inputBarDidHidePlaceholder(_ inputBar: ChatInputBar) {
+        
+    }
+    
+    
+    
 }
