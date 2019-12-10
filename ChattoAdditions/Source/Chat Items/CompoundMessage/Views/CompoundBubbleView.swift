@@ -93,11 +93,11 @@ public final class CompoundBubbleView: UIView, MaximumLayoutWidthSpecificable, B
     }
 
     // MARK: - Layout
-    @available(iOS 11.0, *)
-    public override var safeAreaInsets: UIEdgeInsets {
-        guard let layoutProvider = self.layoutProvider else { return .zero }
-        return layoutProvider.layout(forMaxWidth: self.preferredMaxLayoutWidth).safeAreaInsets
-    }
+//    @available(iOS 11.0, *)
+//    public override var safeAreaInsets: UIEdgeInsets {
+//        guard let layoutProvider = self.layoutProvider else { return .zero }
+//        return layoutProvider.layout(forMaxWidth: self.preferredMaxLayoutWidth).safeAreaInsets
+//    }
 
     public override func sizeThatFits(_ size: CGSize) -> CGSize {
         guard let layoutProvider = self.layoutProvider else { return .zero }
