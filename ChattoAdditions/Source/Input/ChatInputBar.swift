@@ -254,10 +254,11 @@ extension ChatInputBar {
         appearance.sendButtonAppearance.titleColors.forEach { (state, color) in
             self.sendButton.setTitleColor(color, for: state.controlState)
         }
-        self.sendButton.setImage(appearance.sendButtonAppearance.normalImage, for: .normal)
-        self.sendButton.setImage(appearance.sendButtonAppearance.highlightedImage, for: .highlighted)
-        self.sendButton.setImage(appearance.sendButtonAppearance.selectedImage, for: .selected)
-        self.sendButton.setImage(appearance.sendButtonAppearance.disabledImage, for: .disabled)
+        
+//        self.sendButton.setImage(appearance.sendButtonAppearance.normalImage, for: .normal)
+//        self.sendButton.setImage(appearance.sendButtonAppearance.highlightedImage, for: .highlighted)
+//        self.sendButton.setImage(appearance.sendButtonAppearance.selectedImage, for: .selected)
+//        self.sendButton.setImage(appearance.sendButtonAppearance.disabledImage, for: .disabled)
         self.sendButton.titleLabel?.font = appearance.sendButtonAppearance.font
         self.sendButton.backgroundColor = appearance.sendButtonAppearance.backgroundColor
         self.sendButton.accessibilityIdentifier = appearance.sendButtonAppearance.accessibilityIdentifier

@@ -25,6 +25,7 @@
 import UIKit
 
 public struct ChatInputBarAppearance {
+    
     public struct SendButtonAppearance {
         public var font = UIFont.systemFont(ofSize: 16)
         public var insets = UIEdgeInsets.zero
@@ -36,10 +37,10 @@ public struct ChatInputBarAppearance {
         ]
         public let accessibilityIdentifier = "chatto.inputbar.button.send"
         public var backgroundColor = UIColor.clear
-        public var normalImage = UIImage()
-        public var highlightedImage = UIImage()
-        public var disabledImage = UIImage()
-        public var selectedImage = UIImage()
+//        public var normalImage:  UIImage = UIImage()
+//        public var highlightedImage:  UIImage = UIImage()
+//        public var disabledImage:  UIImage = UIImage()
+//        public var selectedImage:  UIImage = UIImage()
     }
 
     public struct TabBarAppearance {
