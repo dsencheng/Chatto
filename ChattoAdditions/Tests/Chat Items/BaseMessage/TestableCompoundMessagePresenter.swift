@@ -24,7 +24,7 @@
 import ChattoAdditions
 import Foundation
 
-@available(iOS 11, *)
+//@available(iOS 11, *)
 final class TestableCompoundMessagePresenter: CompoundMessagePresenter<FakeViewModelBuilder, FakeMessageInteractionHandler> {
 
     init(messageModel: MessageModel, viewModelBuilder: FakeViewModelBuilder) {

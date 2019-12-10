@@ -67,7 +67,11 @@ struct DemoTextMessageContentFactory: MessageContentFactoryProtocol {
 private final class LabelWithInsets: UILabel {
     var textInsets: UIEdgeInsets = .zero
     override func drawText(in rect: CGRect) {
-        super.drawText(in: rect.inset(by: self.textInsets + self.safeAreaInsets))
+        if #available(iOS 11.0, *) {
+            super.drawText(in: rect.inset(by: self.textInsets + self.safeAreaInsets))
+        } else {
+            super.drawText(in: rect.inset(by: self.textInsets))
+        }
     }
 }
 

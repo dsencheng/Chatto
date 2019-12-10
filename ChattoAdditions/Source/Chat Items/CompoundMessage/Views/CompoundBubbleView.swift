@@ -23,7 +23,7 @@
 
 import UIKit
 
-@available(iOS 11, *)
+//@available(iOS 11, *)
 public final class CompoundBubbleView: UIView, MaximumLayoutWidthSpecificable, BackgroundSizingQueryable {
 
     // MARK: - Type declarations
@@ -93,7 +93,7 @@ public final class CompoundBubbleView: UIView, MaximumLayoutWidthSpecificable, B
     }
 
     // MARK: - Layout
-
+    @available(iOS 11.0, *)
     public override var safeAreaInsets: UIEdgeInsets {
         guard let layoutProvider = self.layoutProvider else { return .zero }
         return layoutProvider.layout(forMaxWidth: self.preferredMaxLayoutWidth).safeAreaInsets

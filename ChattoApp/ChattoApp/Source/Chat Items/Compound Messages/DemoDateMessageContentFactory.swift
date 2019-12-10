@@ -91,7 +91,11 @@ private final class DateInfoView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.label.frame = self.bounds.inset(by: self.insets).inset(by: self.safeAreaInsets)
+        if #available(iOS 11.0, *) {
+            self.label.frame = self.bounds.inset(by: self.insets).inset(by: self.safeAreaInsets)
+        } else {
+            self.label.frame = self.bounds.inset(by: self.insets)
+        }
     }
 
     var text: String? {
