@@ -92,7 +92,25 @@ class DemoChatViewController: BaseChatViewController {
             viewModelBuilder: self.createTextMessageViewModelBuilder(),
             interactionHandler: GenericMessageHandler(baseHandler: self.baseMessageHandler)
         )
-        textMessagePresenter.baseMessageStyle = BaseMessageCollectionViewCellAvatarStyle()
+        
+        
+        //设置气泡失败按钮样式
+        let failedImages = BaseMessageCollectionViewCellDefaultStyle.FailedIconImages(normal: UIImage(named: "ic_chat_warn_n")!, highlighted: UIImage(named: "ic_chat_warn_p")!)
+        //文字背景色
+        let colors = BaseMessageCollectionViewCellDefaultStyle.Colors(incoming: UIColor.lightGray, outgoing: UIColor.orange)
+        //基本样式
+        let baseMessageStyle = BaseMessageCollectionViewCellAvatarStyle(colors:colors, bubbleBorderImages: nil, failedIconImages: failedImages)
+        textMessagePresenter.baseMessageStyle = baseMessageStyle
+        
+        //设置气泡文字样式
+        //气泡图片
+        let bubbleStyle = TextMessageCollectionViewCellDefaultStyle.BubbleImages(incomingTail: UIImage(named: "pic_chat_bubble_guest_1")!, incomingNoTail: UIImage(named: "pic_chat_bubble_guest_2")!, outgoingTail: UIImage(named: "pic_chat_bubble_master_1")!, outgoingNoTail: UIImage(named: "pic_chat_bubble_master_2")!)
+        //气泡文字
+        let textStyle = TextMessageCollectionViewCellDefaultStyle.TextStyle(font: UIFont.systemFont(ofSize: 16), incomingColor: UIColor(red: 24.0/255.0, green: 26.0/255.0, blue: 37.0/255.0, alpha: 1), outgoingColor: UIColor.white, incomingInsets: UIEdgeInsets(top: 10, left: 19, bottom: 10, right: 15), outgoingInsets: UIEdgeInsets(top: 10, left: 19, bottom: 10, right: 15))
+        
+        let baseStyle = baseMessageStyle
+        //这里有个坑，初始化textCellStyle 必须赋值 baseStyle，否则默认值带气泡边框
+        textMessagePresenter.textCellStyle = TextMessageCollectionViewCellDefaultStyle(bubbleImages: bubbleStyle, textStyle: textStyle, baseStyle: baseStyle)
 
         let photoMessagePresenter = PhotoMessagePresenterBuilder(
             viewModelBuilder: DemoPhotoMessageViewModelBuilder(),
@@ -177,49 +195,3 @@ extension CompoundBubbleLayoutProvider.Dimensions {
     }
 }
 
-extension DemoChatViewController : ChatInputBarDelegate {
-    func inputBarShouldBeginTextEditing(_ inputBar: ChatInputBar) -> Bool {
-        return true
-    }
-    
-    func inputBarDidBeginEditing(_ inputBar: ChatInputBar) {
-        
-    }
-    
-    func inputBarDidEndEditing(_ inputBar: ChatInputBar) {
-        
-    }
-    
-    func inputBarDidChangeText(_ inputBar: ChatInputBar) {
-        
-    }
-    
-    func inputBarSendButtonPressed(_ inputBar: ChatInputBar) {
-//        let text = inputBar.inputText
-//        self.dataSource.addTextMessage(text)
-//        inputBar.inputText = ""
-    }
-    
-    func inputBar(_ inputBar: ChatInputBar, shouldFocusOnItem item: ChatInputItemProtocol) -> Bool {
-        return true
-    }
-    
-    func inputBar(_ inputBar: ChatInputBar, didLoseFocusOnItem item: ChatInputItemProtocol) {
-        
-    }
-    
-    func inputBar(_ inputBar: ChatInputBar, didReceiveFocusOnItem item: ChatInputItemProtocol) {
-        
-    }
-    
-    func inputBarDidShowPlaceholder(_ inputBar: ChatInputBar) {
-        
-    }
-    
-    func inputBarDidHidePlaceholder(_ inputBar: ChatInputBar) {
-        
-    }
-    
-    
-    
-}

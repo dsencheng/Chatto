@@ -59,8 +59,9 @@ open class TextMessagePresenterBuilder<ViewModelBuilderT, InteractionHandlerT>: 
 
         return cell!
     }()
-
+    //设定文字样式
     public lazy var textCellStyle: TextMessageCollectionViewCellStyleProtocol = TextMessageCollectionViewCellDefaultStyle()
+    //设定头像、失败按钮、气泡边框
     public lazy var baseMessageStyle: BaseMessageCollectionViewCellStyleProtocol = BaseMessageCollectionViewCellDefaultStyle()
 
     open func canHandleChatItem(_ chatItem: ChatItemProtocol) -> Bool {
