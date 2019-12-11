@@ -37,10 +37,10 @@ public struct ChatInputBarAppearance {
         ]
         public let accessibilityIdentifier = "chatto.inputbar.button.send"
         public var backgroundColor = UIColor.clear
-//        public var normalImage:  UIImage = UIImage()
-//        public var highlightedImage:  UIImage = UIImage()
-//        public var disabledImage:  UIImage = UIImage()
-//        public var selectedImage:  UIImage = UIImage()
+        public var normalImage:  UIImage = UIImage()
+        public var highlightedImage:  UIImage = UIImage()
+        public var disabledImage:  UIImage = UIImage()
+        public var selectedImage:  UIImage = UIImage()
     }
 
     public struct TabBarAppearance {
