@@ -109,7 +109,6 @@
 		CDC6100B1FD8268200C2588E /* FakePhotosInputDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC610091FD8267D00C2588E /* FakePhotosInputDataProvider.swift */; };
 		CDC6100D1FD8376000C2588E /* PhotosInputCellProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC6100C1FD8376000C2588E /* PhotosInputCellProviderTests.swift */; };
 		CDE15F43205993FB005D86DD /* PhotosInputCameraPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE15F42205993FB005D86DD /* PhotosInputCameraPickerTests.swift */; };
-		D781CA81239CB120005EEAA3 /* BaseBubbleStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D781CA80239CB120005EEAA3 /* BaseBubbleStatusView.swift */; };
 		DE51010D21B5670A009BC61C /* InputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE51010C21B5670A009BC61C /* InputContainerView.swift */; };
 		E3E0D60322EA1AA2006E2053 /* Comparable+Clamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E0D60222EA1AA2006E2053 /* Comparable+Clamp.swift */; };
 		E3E0D60522EA1AEE006E2053 /* Comparable+ClampTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E0D60422EA1AEE006E2053 /* Comparable+ClampTests.swift */; };
@@ -247,7 +246,6 @@
 		CDC610091FD8267D00C2588E /* FakePhotosInputDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakePhotosInputDataProvider.swift; sourceTree = "<group>"; };
 		CDC6100C1FD8376000C2588E /* PhotosInputCellProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosInputCellProviderTests.swift; sourceTree = "<group>"; };
 		CDE15F42205993FB005D86DD /* PhotosInputCameraPickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosInputCameraPickerTests.swift; sourceTree = "<group>"; };
-		D781CA80239CB120005EEAA3 /* BaseBubbleStatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseBubbleStatusView.swift; sourceTree = "<group>"; };
 		DE51010C21B5670A009BC61C /* InputContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputContainerView.swift; sourceTree = "<group>"; };
 		E3E0D60222EA1AA2006E2053 /* Comparable+Clamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comparable+Clamp.swift"; sourceTree = "<group>"; };
 		E3E0D60422EA1AEE006E2053 /* Comparable+ClampTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comparable+ClampTests.swift"; sourceTree = "<group>"; };
@@ -435,7 +433,6 @@
 		C3C0CBDB1BFE496A0052747C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D781CA80239CB120005EEAA3 /* BaseBubbleStatusView.swift */,
 				C3C0CBDC1BFE496A0052747C /* BaseMessageAssets.xcassets */,
 				C3C0CBDD1BFE496A0052747C /* BaseMessageCollectionViewCell.swift */,
 				C3C0CBDF1BFE496A0052747C /* ViewDefinitions.swift */,
@@ -709,7 +706,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = Badoo;
 				TargetAttributes = {
 					C3C0CBB71BFE49320052747C = {
@@ -724,11 +721,11 @@
 			};
 			buildConfigurationList = C3C0CBB21BFE49320052747C /* Build configuration list for PBXProject "ChattoAdditions" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
+				Base,
 			);
 			mainGroup = C3C0CBAE1BFE49320052747C;
 			productRefGroup = C3C0CBB91BFE49320052747C /* Products */;
@@ -872,7 +869,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3C0CC861BFE49700052747C /* ChatInputItemTests.swift in Sources */,
-				D781CA81239CB120005EEAA3 /* BaseBubbleStatusView.swift in Sources */,
 				CDC6100B1FD8268200C2588E /* FakePhotosInputDataProvider.swift in Sources */,
 				EAAFBCEB2302BBD3004F553D /* DefaultMessageContentPresenterTests.swift in Sources */,
 				EAAFBCEF2302DB22004F553D /* FakeViewModelBuilder.swift in Sources */,
@@ -924,6 +920,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -983,6 +980,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
