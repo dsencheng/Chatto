@@ -186,7 +186,10 @@ extension DemoChatMessageFactory {
     private static let messagesSelectionMessages: [DemoMessage] = [
         .text("Now you have an ability to select chat messages"),
         .text("Press \"Select\" to enter selection mode"),
+        .image("pic-test-2"),
         .text("Press \"Cancel\" to exit selection mode"),
+        .text("Press \"Delete\" to delete selection mode"),
+        .image("pic-test-1"),
         .text("In selection mode all interactions with bubbles are disabled"),
         .text("A message can be selected or deselected by tapping on a message cell")
     ]

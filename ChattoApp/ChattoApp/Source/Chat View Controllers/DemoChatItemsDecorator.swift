@@ -129,7 +129,7 @@ final class DemoChatItemsDecorator: ChatItemsDecoratorProtocol {
     }
     //MARK : 修改发送失败文字状态
     private func showsStatusForMessage(_ message: MessageModelProtocol) -> Bool {
-        return false
-//        return message.status == .failed || message.status == .sending
+//        return false
+        return message.status == .failed || message.status == .sending
     }
 }

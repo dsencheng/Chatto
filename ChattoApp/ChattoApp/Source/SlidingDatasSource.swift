@@ -132,4 +132,14 @@ public class SlidingDataSource<Element> {
         self.items[index] = item
         return true
     }
+    
+    @discardableResult
+    func removeItem(where predicate: (Element) -> Bool) -> Bool {
+        guard let index = self.items.firstIndex(where: predicate) else { return false}
+        self.windowOffset -= 1
+        self.windowCount -= 1
+        self.itemsOffset -= 1
+        self.items.remove(at: index)
+        return true
+    }
 }

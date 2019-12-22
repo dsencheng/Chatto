@@ -123,4 +123,10 @@ class DemoChatDataSource: ChatDataSourceProtocol {
         guard didUpdate else { return }
         self.delegate?.chatDataSourceDidUpdate(self)
     }
+    
+    func removeMessage(withUID uid: String) {
+        let didUpdate = self.slidingWindow.removeItem() { $0.uid == uid }
+        guard didUpdate else { return }
+        self.delegate?.chatDataSourceDidUpdate(self, updateType: .messageCountReduction)
+    }
 }

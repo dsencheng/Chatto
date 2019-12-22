@@ -39,7 +39,7 @@ class MessagesSelectionChatViewController: DemoChatViewController {
             target: self,
             action: #selector(handleSelectionButtonTap)
         )
-        self.navigationItem.rightBarButtonItem = button
+        self.navigationItem.rightBarButtonItems = [button]
     }
 
     @objc
@@ -52,19 +52,35 @@ class MessagesSelectionChatViewController: DemoChatViewController {
     // MARK: - Cancellation
 
     private func setupCancellationButton() {
-        let button = UIBarButtonItem(
+        let cancel = UIBarButtonItem(
             title: "Cancel",
             style: .plain,
             target: self,
             action: #selector(handleCancellationButtonTap)
         )
-        self.navigationItem.rightBarButtonItem = button
+        let delete = UIBarButtonItem(
+            title: "Delete",
+            style: .plain,
+            target: self,
+            action: #selector(handleDeleteButtonTap)
+        )
+        self.navigationItem.rightBarButtonItems = [cancel,delete]
     }
 
     @objc
     private func handleCancellationButtonTap() {
         self.setupSelectionButton()
         self.messagesSelector.isActive = false
+        self.enqueueModelUpdate(updateType: .normal)
+    }
+    
+    @objc
+    private func handleDeleteButtonTap() {
+        self.setupSelectionButton()
+        self.messagesSelector.isActive = false
+        for item in self.messagesSelector.selectedMessages() {
+            self.dataSource.removeMessage(withUID: item.uid)
+        }
         self.enqueueModelUpdate(updateType: .normal)
     }
 }

@@ -65,5 +65,6 @@ final class UpdateItemTypeViewController: DemoChatViewController {
             self.displayedItem = self.textItem
         }
         self.dataSource.replaceMessage(withUID: previousUID, withNewMessage: self.displayedItem)
+//        self.dataSource.removeMessage(withUID: previousUID)
     }
 }
