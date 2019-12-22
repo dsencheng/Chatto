@@ -31,8 +31,8 @@ final class GenericMessageHandler<ViewModel: DemoMessageViewModelProtocol & Mess
         self.baseHandler = baseHandler
     }
 
-    func userDidTapOnFailIcon(viewModel: ViewModel, failIconView: UIView) {
-        self.baseHandler.userDidTapOnFailIcon(viewModel: viewModel)
+    func userDidTapOnButtonAttachment(viewModel: ViewModel, attachmentView: UIView) {
+        self.baseHandler.userDidTapOnAttachmentButton(viewModel: viewModel)
     }
 
     func userDidTapOnAvatar(viewModel: ViewModel) {

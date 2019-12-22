@@ -94,12 +94,13 @@ class DemoChatViewController: BaseChatViewController {
         )
         
         
-        //设置气泡失败按钮样式
-        let failedImages = BaseMessageCollectionViewCellDefaultStyle.FailedIconImages(normal: UIImage(named: "ic_chat_warn_n")!, highlighted: UIImage(named: "ic_chat_warn_p")!)
+        //设置气泡状态按钮样式
+        let attchmentImages = BaseMessageCollectionViewCellDefaultStyle.BubbleAttachmentIconImages(failedNormal: UIImage(named: "ic_chat_warn_n")!, failedHighlighted: UIImage(named: "ic_chat_warn_p")!, sendingNormal: UIImage(named: "ic_chat_dialogue_load")!, sendingHighlighted: UIImage(named: "ic_chat_dialogue_load")!)
         //文字背景色
         let colors = BaseMessageCollectionViewCellDefaultStyle.Colors(incoming: UIColor.lightGray, outgoing: UIColor.orange)
+        let attachmentSytle = BaseMessageCollectionViewCellDefaultStyle.AttachmentStyle(size: CGSize(width: 32, height: 32), margin:.zero)
         //基本样式
-        let baseMessageStyle = BaseMessageCollectionViewCellAvatarStyle(colors:colors, bubbleBorderImages: nil, failedIconImages: failedImages)
+        let baseMessageStyle = BaseMessageCollectionViewCellAvatarStyle(colors:colors, bubbleAttachmentIconImages: attchmentImages, attachmentStyle:attachmentSytle)
         textMessagePresenter.baseMessageStyle = baseMessageStyle
         
         //设置气泡文字样式
@@ -116,7 +117,7 @@ class DemoChatViewController: BaseChatViewController {
             viewModelBuilder: DemoPhotoMessageViewModelBuilder(),
             interactionHandler: GenericMessageHandler(baseHandler: self.baseMessageHandler)
         )
-        photoMessagePresenter.baseCellStyle = BaseMessageCollectionViewCellAvatarStyle()
+        photoMessagePresenter.baseCellStyle = baseMessageStyle
 
         let compoundPresenterBuilder = CompoundMessagePresenterBuilder(
             viewModelBuilder: DemoCompoundMessageViewModelBuilder(),
@@ -128,7 +129,7 @@ class DemoChatViewController: BaseChatViewController {
                 .init(DemoDateMessageContentFactory())
             ],
             compoundCellDimensions: .defaultDimensions,
-            baseCellStyle: BaseMessageCollectionViewCellAvatarStyle()
+            baseCellStyle: baseMessageStyle
         )
 
         return [

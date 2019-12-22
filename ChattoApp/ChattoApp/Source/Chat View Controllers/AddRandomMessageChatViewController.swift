@@ -39,6 +39,7 @@ class AddRandomMessagesChatViewController: DemoChatViewController {
 
     @objc
     private func addRandomMessage() {
-        self.dataSource.addRandomIncomingMessage()
+//        self.dataSource.addRandomIncomingMessage()
+        self.dataSource.addCustomPhotoMessage(UIImage(named: "pic-test-2")!)
     }
 }

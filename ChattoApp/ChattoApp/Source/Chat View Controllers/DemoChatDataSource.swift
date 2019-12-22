@@ -24,6 +24,7 @@
 
 import Foundation
 import Chatto
+import ChattoAdditions
 
 class DemoChatDataSource: ChatDataSourceProtocol {
     var nextMessageId: Int = 0
@@ -92,6 +93,16 @@ class DemoChatDataSource: ChatDataSourceProtocol {
         let message = DemoChatMessageFactory.makePhotoMessage(uid, image: image, size: image.size, isIncoming: false)
         self.messageSender.sendMessage(message)
         self.slidingWindow.insertItem(message, position: .bottom)
+        self.delegate?.chatDataSourceDidUpdate(self)
+    }
+    
+    func addCustomPhotoMessage(_ image: UIImage) {
+        let uid = "\(self.nextMessageId)"
+        self.nextMessageId += 1
+        let messageModel = MessageModel(uid: uid, senderId: "2", type: PhotoMessageModel<MessageModel>.chatItemType, isIncoming: false, date: Date(), status: .sending)
+        let photoMessageModel = DemoPhotoMessageModel(messageModel: messageModel, imageSize: image.size, image: image)
+        self.messageSender.sendMessage(photoMessageModel)
+        self.slidingWindow.insertItem(photoMessageModel, position: .bottom)
         self.delegate?.chatDataSourceDidUpdate(self)
     }
 

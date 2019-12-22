@@ -26,18 +26,18 @@ import UIKit
 import Chatto
 
 public struct BaseMessageDecorationAttributes {
-    public var canShowFailedIcon: Bool
+    public var canShowBubbleAttachment: Bool
     public let isShowingTail: Bool
     public let isShowingAvatar: Bool
     public let isShowingSelectionIndicator: Bool
     public let isSelected: Bool
 
-    public init(canShowFailedIcon: Bool = true,
+    public init(canShowBubbleAttachment: Bool = true,
                 isShowingTail: Bool = false,
                 isShowingAvatar: Bool = false,
                 isShowingSelectionIndicator: Bool = false,
                 isSelected: Bool = false) {
-        self.canShowFailedIcon = canShowFailedIcon
+        self.canShowBubbleAttachment = canShowBubbleAttachment
         self.isShowingTail = isShowingTail
         self.isShowingAvatar = isShowingAvatar
         self.isShowingSelectionIndicator = isShowingSelectionIndicator
@@ -59,11 +59,11 @@ public struct ChatItemDecorationAttributes: ChatItemDecorationAttributesProtocol
     public init(bottomMargin: CGFloat,
                 canShowTail: Bool,
                 canShowAvatar: Bool,
-                canShowFailedIcon: Bool,
+                canShowBubbleAttachment: Bool,
                 isShowingSelectionIndicator: Bool = false,
                 isSelected: Bool = false) {
         let messageDecorationAttributes = BaseMessageDecorationAttributes(
-            canShowFailedIcon: canShowFailedIcon,
+            canShowBubbleAttachment: canShowBubbleAttachment,
             isShowingTail: canShowTail,
             isShowingAvatar: canShowAvatar,
             isShowingSelectionIndicator: isShowingSelectionIndicator,

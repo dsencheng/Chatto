@@ -124,7 +124,7 @@ open class TextMessageCollectionViewCellDefaultStyle: TextMessageCollectionViewC
         return UIImage()
     }
 
-    open func createImage(templateImage image: UIImage, isIncoming: Bool, status: MessageViewModelStatus, isSelected: Bool) -> UIImage {
+    open func createImage(templateImage image: UIImage, isIncoming: Bool, status: MessageStatus, isSelected: Bool) -> UIImage {
         var color = isIncoming ? self.baseStyle.baseColorIncoming : self.baseStyle.baseColorOutgoing
 
         switch status {
@@ -143,7 +143,7 @@ open class TextMessageCollectionViewCellDefaultStyle: TextMessageCollectionViewC
 
     private enum ImageKey: Hashable {
         case template(isIncoming: Bool, showsTail: Bool)
-        case normal(isIncoming: Bool, status: MessageViewModelStatus, showsTail: Bool, isSelected: Bool)
+        case normal(isIncoming: Bool, status: MessageStatus, showsTail: Bool, isSelected: Bool)
     }
 }
 

@@ -24,32 +24,13 @@
 
 import UIKit
 
-public enum MessageViewModelStatus {
-    case success
-    case sending
-    case failed
-}
-
-public extension MessageStatus {
-    func viewModelStatus() -> MessageViewModelStatus {
-        switch self {
-        case .success:
-            return MessageViewModelStatus.success
-        case .failed:
-            return MessageViewModelStatus.failed
-        case .sending:
-            return MessageViewModelStatus.sending
-        }
-    }
-}
-
 public protocol MessageViewModelProtocol: class { // why class? https://gist.github.com/diegosanchezr/29979d22c995b4180830
     var decorationAttributes: BaseMessageDecorationAttributes { get set }
     var isIncoming: Bool { get }
     var isUserInteractionEnabled: Bool { get set }
-    var isShowingFailedIcon: Bool { get }
+    var isShowingBubbleAttachment: Bool { get }
     var date: String { get }
-    var status: MessageViewModelStatus { get }
+    var status: MessageStatus { get }
     var avatarImage: Observable<UIImage?> { get set }
     func willBeShown() // Optional
     func wasHidden() // Optional
@@ -92,12 +73,12 @@ extension DecoratedMessageViewModelProtocol {
         return self.messageViewModel.date
     }
 
-    public var status: MessageViewModelStatus {
+    public var status: MessageStatus {
         return self.messageViewModel.status
     }
 
-    public var isShowingFailedIcon: Bool {
-        return self.messageViewModel.isShowingFailedIcon
+    public var isShowingBubbleAttachment: Bool {
+        return self.messageViewModel.isShowingBubbleAttachment
     }
 
     public var avatarImage: Observable<UIImage?> {
@@ -118,8 +99,8 @@ open class MessageViewModel: MessageViewModelProtocol {
     open var decorationAttributes: BaseMessageDecorationAttributes
     open var isUserInteractionEnabled: Bool = true
 
-    open var status: MessageViewModelStatus {
-        return self.messageModel.status.viewModelStatus()
+    open var status: MessageStatus {
+        return self.messageModel.status
     }
 
     open lazy var date: String = {
@@ -139,8 +120,8 @@ open class MessageViewModel: MessageViewModelProtocol {
         self.decorationAttributes = decorationAttributes
     }
 
-    open var isShowingFailedIcon: Bool {
-        return self.status == .failed
+    open var isShowingBubbleAttachment: Bool {
+        return self.status != .success
     }
 
     public var avatarImage: Observable<UIImage?>

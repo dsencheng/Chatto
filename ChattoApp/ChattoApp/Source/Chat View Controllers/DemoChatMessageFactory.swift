@@ -100,7 +100,16 @@ class DemoChatMessageFactory {
 
     private class func makeMessageModel(_ uid: String, isIncoming: Bool, type: String) -> MessageModel {
         let senderId = isIncoming ? "1" : "2"
-        let messageStatus = isIncoming || arc4random_uniform(100) % 3 == 0 ? MessageStatus.success : .failed
+        var messageStatus = MessageStatus.success
+        if !isIncoming {
+           let random = arc4random_uniform(100)
+            if random < 30 {
+                messageStatus = .failed
+            } else if random < 70 {
+                messageStatus = .sending
+            }
+        }
+        
         return MessageModel(uid: uid, senderId: senderId, type: type, isIncoming: isIncoming, date: Date(), status: messageStatus)
     }
 }

@@ -61,8 +61,8 @@ open class PhotoMessageViewModel<PhotoMessageModelT: PhotoMessageModelProtocol>:
     public let cellAccessibilityIdentifier = "chatto.message.photo.cell"
     public let bubbleAccessibilityIdentifier = "chatto.message.photo.bubble"
     public let messageViewModel: MessageViewModelProtocol
-    open var isShowingFailedIcon: Bool {
-        return self.messageViewModel.isShowingFailedIcon || self.transferStatus.value == .failed
+    open var isShowingBubbleAttachment: Bool {
+        return self.messageViewModel.isShowingBubbleAttachment || self.transferStatus.value == .failed
     }
 
     public init(photoMessage: PhotoMessageModelT, messageViewModel: MessageViewModelProtocol) {

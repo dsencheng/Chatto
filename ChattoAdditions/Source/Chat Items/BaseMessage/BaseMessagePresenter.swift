@@ -34,7 +34,7 @@ public protocol ViewModelBuilderProtocol {
 
 public protocol BaseMessageInteractionHandlerProtocol {
     associatedtype ViewModelT
-    func userDidTapOnFailIcon(viewModel: ViewModelT, failIconView: UIView)
+    func userDidTapOnButtonAttachment(viewModel: ViewModelT, attachmentView: UIView)
     func userDidTapOnAvatar(viewModel: ViewModelT)
     func userDidTapOnBubble(viewModel: ViewModelT)
     func userDidBeginLongPressOnBubble(viewModel: ViewModelT)
@@ -139,9 +139,9 @@ open class BaseMessagePresenter<BubbleViewT, ViewModelBuilderT, InteractionHandl
                 guard let sSelf = self else { return }
                 sSelf.onCellAvatarTapped()
             }
-            cell.onFailedButtonTapped = { [weak self] (cell) in
+            cell.onBubbleAttachmentTapped = { [weak self] (cell) in
                 guard let sSelf = self else { return }
-                sSelf.onCellFailedButtonTapped(cell.failedButton)
+                sSelf.onCellBubbleAttachmentTapped(cell.bubbleAttachment.attachmentButton)
             }
             cell.onSelection = { [weak self] (cell) in
                 guard let sSelf = self else { return }
@@ -217,8 +217,8 @@ open class BaseMessagePresenter<BubbleViewT, ViewModelBuilderT, InteractionHandl
         self.interactionHandler?.userDidTapOnAvatar(viewModel: self.messageViewModel)
     }
 
-    open func onCellFailedButtonTapped(_ failedButtonView: UIView) {
-        self.interactionHandler?.userDidTapOnFailIcon(viewModel: self.messageViewModel, failIconView: failedButtonView)
+    open func onCellBubbleAttachmentTapped(_ failedButtonView: UIView) {
+        self.interactionHandler?.userDidTapOnButtonAttachment(viewModel: self.messageViewModel, attachmentView: failedButtonView)
     }
 
     open func onCellSelection() {

@@ -93,7 +93,7 @@ final class DemoChatItemsDecorator: ChatItemsDecoratorProtocol {
             }
 
             let messageDecorationAttributes = BaseMessageDecorationAttributes(
-                canShowFailedIcon: true,
+                canShowBubbleAttachment: true,
                 isShowingTail: showsTail,
                 isShowingAvatar: showsTail,
                 isShowingSelectionIndicator: isShowingSelectionIndicator,

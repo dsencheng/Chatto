@@ -39,8 +39,8 @@ class BaseMessageHandler {
         self.messageSender = messageSender
         self.messagesSelector = messagesSelector
     }
-    func userDidTapOnFailIcon(viewModel: DemoMessageViewModelProtocol) {
-        print("userDidTapOnFailIcon")
+    func userDidTapOnAttachmentButton(viewModel: DemoMessageViewModelProtocol) {
+        print("userDidTapOnAttachmentButton")
         self.messageSender.sendMessage(viewModel.messageModel)
     }
 
