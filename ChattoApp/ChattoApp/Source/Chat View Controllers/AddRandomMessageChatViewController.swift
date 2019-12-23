@@ -28,18 +28,80 @@ class AddRandomMessagesChatViewController: DemoChatViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let button = UIBarButtonItem(
-            title: "Add message",
-            style: .plain,
-            target: self,
-            action: #selector(addRandomMessage)
-        )
-        self.navigationItem.rightBarButtonItem = button
+        setupSelectionButton()
     }
 
     @objc
     private func addRandomMessage() {
 //        self.dataSource.addRandomIncomingMessage()
         self.dataSource.addCustomPhotoMessage(UIImage(named: "pic-test-2")!)
+    }
+    
+    // MARK: - Selection
+
+    private func setupSelectionButton() {
+        let button = UIBarButtonItem(
+            title: "Select",
+            style: .plain,
+            target: self,
+            action: #selector(handleSelectionButtonTap)
+        )
+        self.navigationItem.rightBarButtonItems = [button]
+    }
+
+    @objc
+    private func handleSelectionButtonTap() {
+        self.setupCancellationButton()
+        self.messagesSelector.isActive = true
+        self.enqueueModelUpdate(updateType: .normal)
+    }
+
+    // MARK: - Cancellation
+
+    private func setupCancellationButton() {
+        let cancel = UIBarButtonItem(
+            title: "Cancel",
+            style: .plain,
+            target: self,
+            action: #selector(handleCancellationButtonTap)
+        )
+        let delete = UIBarButtonItem(
+            title: "Delete",
+            style: .plain,
+            target: self,
+            action: #selector(handleDeleteButtonTap)
+        )
+        let add = UIBarButtonItem(
+            title: "Add",
+            style: .plain,
+            target: self,
+            action: #selector(handleAddActionButtonTap)
+        )
+        self.navigationItem.rightBarButtonItems = [cancel,delete,add]
+    }
+
+    @objc
+    private func handleCancellationButtonTap() {
+        self.setupSelectionButton()
+        self.messagesSelector.isActive = false
+        self.enqueueModelUpdate(updateType: .normal)
+    }
+    
+    @objc
+    private func handleDeleteButtonTap() {
+        self.setupSelectionButton()
+        self.messagesSelector.isActive = false
+        for item in self.messagesSelector.selectedMessages() {
+            self.dataSource.removeMessage(withUID: item.uid)
+        }
+        self.enqueueModelUpdate(updateType: .normal)
+    }
+    
+    @objc
+    private func handleAddActionButtonTap() {
+        self.setupSelectionButton()
+        self.messagesSelector.isActive = false
+        self.dataSource.addRandomIncomingMessage()
+        self.enqueueModelUpdate(updateType: .pagination)
     }
 }

@@ -64,7 +64,13 @@ class MessagesSelectionChatViewController: DemoChatViewController {
             target: self,
             action: #selector(handleDeleteButtonTap)
         )
-        self.navigationItem.rightBarButtonItems = [cancel,delete]
+        let add = UIBarButtonItem(
+            title: "Add",
+            style: .plain,
+            target: self,
+            action: #selector(handleAddActionButtonTap)
+        )
+        self.navigationItem.rightBarButtonItems = [cancel,delete,add]
     }
 
     @objc
@@ -82,5 +88,13 @@ class MessagesSelectionChatViewController: DemoChatViewController {
             self.dataSource.removeMessage(withUID: item.uid)
         }
         self.enqueueModelUpdate(updateType: .normal)
+    }
+    
+    @objc
+    private func handleAddActionButtonTap() {
+        self.setupSelectionButton()
+        self.messagesSelector.isActive = false
+        self.dataSource.addRandomIncomingMessage()
+        self.enqueueModelUpdate(updateType: .pagination)
     }
 }

@@ -33,10 +33,10 @@ public enum InsertPosition {
 public class SlidingDataSource<Element> {
 
     private var pageSize: Int
-    private var windowOffset: Int
-    private var windowCount: Int
+    private var windowOffset: Int   // 和 itemsOffset 保持一致,当前，最顶部的一条，在windowCount的位置
+    private var windowCount: Int    //应是当前屏显示的数量，多页累加？
     private var itemGenerator: (() -> Element)?
-    private var items = [Element]()
+    private var items = [Element]()     //元素数组
     private var itemsOffset: Int
     public var itemsInWindow: [Element] {
         let offset = self.windowOffset - self.itemsOffset
@@ -136,9 +136,7 @@ public class SlidingDataSource<Element> {
     @discardableResult
     func removeItem(where predicate: (Element) -> Bool) -> Bool {
         guard let index = self.items.firstIndex(where: predicate) else { return false}
-        self.windowOffset -= 1
         self.windowCount -= 1
-        self.itemsOffset -= 1
         self.items.remove(at: index)
         return true
     }
