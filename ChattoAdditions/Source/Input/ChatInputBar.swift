@@ -49,7 +49,7 @@ open class ChatInputBar: ReusableXibView {
     weak var presenter: ChatInputBarPresenter?
 
     public var shouldEnableSendButton = { (inputBar: ChatInputBar) -> Bool in
-        return !inputBar.textView.text.isEmpty
+        return !inputBar.textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 
     public var inputTextView: UITextView? {
@@ -174,7 +174,7 @@ open class ChatInputBar: ReusableXibView {
 
     public var inputText: String {
         get {
-            return self.textView.text
+            return self.textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
         }
         set {
             self.textView.text = newValue
