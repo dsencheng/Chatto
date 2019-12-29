@@ -14,80 +14,81 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VEc-z3-OQW" userLabel="Input View container">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="46"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="98"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hHg-ZO-47L">
-                            <rect key="frame" x="8" y="9" width="538" height="29"/>
+                            <rect key="frame" x="12" y="7" width="530" height="84"/>
                             <subviews>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fsh-hH-hKG" userLabel="TextView" customClass="ExpandableTextView" customModule="ChattoAdditions" customModuleProvider="target">
-                                    <rect key="frame" x="10" y="5" width="518" height="19"/>
+                                    <rect key="frame" x="15" y="9" width="500" height="66"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textView>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="fsh-hH-hKG" firstAttribute="leading" secondItem="hHg-ZO-47L" secondAttribute="leading" constant="10" id="6VG-bL-84u"/>
-                                <constraint firstAttribute="bottom" secondItem="fsh-hH-hKG" secondAttribute="bottom" constant="5" id="80u-LR-FSP"/>
-                                <constraint firstItem="fsh-hH-hKG" firstAttribute="top" secondItem="hHg-ZO-47L" secondAttribute="top" constant="5" id="KLw-Sy-8aj"/>
-                                <constraint firstAttribute="trailing" secondItem="fsh-hH-hKG" secondAttribute="trailing" constant="10" id="leA-rQ-TwB"/>
+                                <constraint firstItem="fsh-hH-hKG" firstAttribute="leading" secondItem="hHg-ZO-47L" secondAttribute="leading" constant="15" id="6VG-bL-84u"/>
+                                <constraint firstAttribute="bottom" secondItem="fsh-hH-hKG" secondAttribute="bottom" constant="9" id="80u-LR-FSP"/>
+                                <constraint firstItem="fsh-hH-hKG" firstAttribute="top" secondItem="hHg-ZO-47L" secondAttribute="top" constant="9" id="KLw-Sy-8aj"/>
+                                <constraint firstAttribute="trailing" secondItem="fsh-hH-hKG" secondAttribute="trailing" constant="15" id="leA-rQ-TwB"/>
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37S-Jd-J5N">
-                            <rect key="frame" x="558" y="4" width="34" height="34"/>
+                            <rect key="frame" x="554" y="56" width="34" height="34"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="37S-Jd-J5N" secondAttribute="height" multiplier="1:1" id="7DA-ic-O5g"/>
-                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="40" id="hL8-ec-cgq"/>
+                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="36" id="hL8-ec-cgq"/>
+                                <constraint firstAttribute="width" secondItem="37S-Jd-J5N" secondAttribute="height" multiplier="1:1" id="kKQ-Qp-QJf"/>
                             </constraints>
                             <connections>
                                 <action selector="buttonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="qsw-bQ-KQt"/>
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="37S-Jd-J5N" firstAttribute="top" relation="greaterThanOrEqual" secondItem="VEc-z3-OQW" secondAttribute="top" constant="4" id="Ffh-nF-DFi"/>
                         <constraint firstItem="37S-Jd-J5N" firstAttribute="leading" secondItem="hHg-ZO-47L" secondAttribute="trailing" constant="12" id="HVh-jg-YUo"/>
-                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="Mhs-He-CVf"/>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="110" id="Mhs-He-CVf"/>
                         <constraint firstAttribute="bottom" secondItem="37S-Jd-J5N" secondAttribute="bottom" constant="8" id="Uhu-G3-hR9"/>
-                        <constraint firstAttribute="trailing" secondItem="37S-Jd-J5N" secondAttribute="trailing" constant="8" id="nFV-QD-eFc"/>
-                        <constraint firstItem="hHg-ZO-47L" firstAttribute="leading" secondItem="VEc-z3-OQW" secondAttribute="leading" constant="8" id="ph4-jF-OY9"/>
-                        <constraint firstItem="hHg-ZO-47L" firstAttribute="top" secondItem="VEc-z3-OQW" secondAttribute="top" constant="9" id="q6O-hq-qvp"/>
-                        <constraint firstAttribute="bottom" secondItem="hHg-ZO-47L" secondAttribute="bottom" constant="8" id="qDq-8I-Spn"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="52" id="YRR-wj-2tK"/>
+                        <constraint firstAttribute="trailing" secondItem="37S-Jd-J5N" secondAttribute="trailing" constant="12" id="nFV-QD-eFc"/>
+                        <constraint firstItem="hHg-ZO-47L" firstAttribute="leading" secondItem="VEc-z3-OQW" secondAttribute="leading" constant="12" id="ph4-jF-OY9"/>
+                        <constraint firstItem="hHg-ZO-47L" firstAttribute="top" secondItem="VEc-z3-OQW" secondAttribute="top" constant="7" id="q6O-hq-qvp"/>
+                        <constraint firstAttribute="bottom" secondItem="hHg-ZO-47L" secondAttribute="bottom" constant="7" id="qDq-8I-Spn"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hkz-tq-X6j" userLabel="Tab selector container">
-                    <rect key="frame" x="0.0" y="54" width="600" height="44"/>
+                    <rect key="frame" x="0.0" y="98" width="600" height="0.0"/>
                     <subviews>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNX-pj-5AB" customClass="HorizontalStackScrollView" customModule="ChattoAdditions" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="0.0"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </scrollView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="WNX-pj-5AB" firstAttribute="leading" secondItem="hkz-tq-X6j" secondAttribute="leading" id="Jk5-7M-Mh8"/>
                         <constraint firstItem="WNX-pj-5AB" firstAttribute="top" secondItem="hkz-tq-X6j" secondAttribute="top" id="QdZ-iC-yJd"/>
                         <constraint firstAttribute="trailing" secondItem="WNX-pj-5AB" secondAttribute="trailing" id="dTX-LB-QpV"/>
                         <constraint firstAttribute="bottom" secondItem="WNX-pj-5AB" secondAttribute="bottom" id="i7l-t6-4IG"/>
-                        <constraint firstAttribute="height" constant="44" id="vwa-F7-EIB"/>
+                        <constraint firstAttribute="height" id="vwa-F7-EIB"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b1n-fp-7di" userLabel="Top border">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="1"/>
-                    <color key="backgroundColor" red="0.66666668653488159" green="0.66666668653488159" blue="0.66666668653488159" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" identifier="top-border-height" id="IIv-qg-Tlp"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="VEc-z3-OQW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5uc-sr-Mfu"/>
                 <constraint firstAttribute="bottom" secondItem="hkz-tq-X6j" secondAttribute="bottom" id="HFl-3K-Xpk"/>
                 <constraint firstItem="VEc-z3-OQW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="QYm-li-Jkn"/>
-                <constraint firstItem="hkz-tq-X6j" firstAttribute="top" secondItem="VEc-z3-OQW" secondAttribute="bottom" constant="8" symbolic="YES" id="RR7-aZ-koX"/>
+                <constraint firstItem="hkz-tq-X6j" firstAttribute="top" secondItem="VEc-z3-OQW" secondAttribute="bottom" id="RR7-aZ-koX"/>
                 <constraint firstAttribute="trailing" secondItem="hkz-tq-X6j" secondAttribute="trailing" id="V4u-Kv-Ub2"/>
                 <constraint firstItem="hkz-tq-X6j" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eGb-Fb-2Of"/>
                 <constraint firstItem="hkz-tq-X6j" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="gpt-vU-KzZ"/>

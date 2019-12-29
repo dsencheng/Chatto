@@ -494,21 +494,35 @@ private struct Layout {
         if isIncoming {
             currentX += horizontalMargin
             avatarViewFrame.origin.x = currentX
-            currentX += avatarSize.width
-            currentX += horizontalInterspacing
+            if avatarSize.width > 0 {
+                currentX += avatarSize.width
+                currentX += horizontalInterspacing
+            }
             bubbleViewFrame.origin.x = currentX
-            currentX += bubbleSize.width
-            currentX += horizontalInterspacing
+            if bubbleSize.width > 0 {
+                currentX += bubbleSize.width
+                currentX += horizontalInterspacing
+            }
             bubbleAttachmentFrame.origin.x = currentX
         } else {
             currentX = containerRect.maxX - horizontalMargin
-            currentX -= avatarSize.width
+            if avatarSize.width > 0 {
+                currentX -= avatarSize.width
+            }
             avatarViewFrame.origin.x = currentX
-            currentX -= horizontalInterspacing
-            currentX -= bubbleSize.width
+            if avatarSize.width > 0 {
+                currentX -= horizontalInterspacing
+            }
+            if bubbleSize.width > 0 {
+                currentX -= bubbleSize.width
+            }
             bubbleViewFrame.origin.x = currentX
-            currentX -= horizontalInterspacing
-            currentX -= bubbleAttachmentSize.width
+            if bubbleSize.width > 0 {
+                currentX -= horizontalInterspacing
+            }
+            if bubbleAttachmentSize.width > 0 {
+                currentX -= bubbleAttachmentSize.width
+            }
             bubbleAttachmentFrame.origin.x = currentX
         }
 

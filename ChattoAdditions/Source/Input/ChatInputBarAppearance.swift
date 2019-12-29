@@ -58,8 +58,8 @@ public struct ChatInputBarAppearance {
         public var placeholderFont = UIFont.systemFont(ofSize: 12)
         public var placeholderColor = UIColor.gray
         public var placeholderText = ""
-        public var textInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
-        public var height: CGFloat = 52
+        public var textInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        public var height: CGFloat = 38
         public let accessibilityIdentifier = "chatto.inputbar.inputfield.text"
     }
 

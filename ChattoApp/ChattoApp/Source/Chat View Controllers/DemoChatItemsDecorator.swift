@@ -72,7 +72,7 @@ final class DemoChatItemsDecorator: ChatItemsDecoratorProtocol {
                     //测试超过5分钟插入一个
 //                    let interval = currentMessage.date.timeIntervalSince(previousMessage.date)
 //                    addTimeSeparator = interval > 300.0
-                    addTimeSeparator = true
+//                    addTimeSeparator = true
                 }
 
                 if self.showsStatusForMessage(currentMessage) {

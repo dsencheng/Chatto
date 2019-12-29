@@ -65,6 +65,7 @@ open class TextMessageCollectionViewCellDefaultStyle: TextMessageCollectionViewC
         }
     }
 
+    public var bubbleImageStatusStyle = BubbleImageStatusStyle.follwStatus
     public let bubbleImages: BubbleImages
     public let textStyle: TextStyle
     public let baseStyle: BaseMessageCollectionViewCellDefaultStyle
@@ -114,8 +115,12 @@ open class TextMessageCollectionViewCellDefaultStyle: TextMessageCollectionViewC
         } else {
             let templateKey = ImageKey.template(isIncoming: viewModel.isIncoming, showsTail: viewModel.decorationAttributes.isShowingTail)
             if let image = self.images[templateKey] {
-                let image = self.createImage(templateImage: image, isIncoming: viewModel.isIncoming, status: viewModel.status, isSelected: isSelected)
-                self.images[key] = image
+                if self.bubbleImageStatusStyle == .follwStatus {
+                    let image = self.createImage(templateImage: image, isIncoming: viewModel.isIncoming, status: viewModel.status, isSelected: isSelected)
+                    self.images[key] = image
+                } else {
+                    self.images[key] = image
+                }
                 return image
             }
         }
@@ -144,6 +149,11 @@ open class TextMessageCollectionViewCellDefaultStyle: TextMessageCollectionViewC
     private enum ImageKey: Hashable {
         case template(isIncoming: Bool, showsTail: Bool)
         case normal(isIncoming: Bool, status: MessageStatus, showsTail: Bool, isSelected: Bool)
+    }
+    
+    public enum BubbleImageStatusStyle {
+        case none
+        case follwStatus
     }
 }
 

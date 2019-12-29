@@ -293,9 +293,9 @@ public extension BaseMessageCollectionViewCellDefaultStyle { // Default values
     }
 
     static func createDefaultLayoutConstants() -> BaseMessageCollectionViewCellLayoutConstants {
-        return BaseMessageCollectionViewCellLayoutConstants(horizontalMargin: 11,
-                                                            horizontalInterspacing: 4,
-                                                            horizontalTimestampMargin: 11,
+        return BaseMessageCollectionViewCellLayoutConstants(horizontalMargin: 12,
+                                                            horizontalInterspacing: 8,
+                                                            horizontalTimestampMargin: 12,
                                                             maxContainerWidthPercentageForBubbleView: 0.68)
     }
 

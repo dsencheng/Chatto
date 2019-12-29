@@ -106,13 +106,15 @@ class DemoChatViewController: BaseChatViewController {
         
         //设置气泡文字样式
         //气泡图片
-        let bubbleStyle = TextMessageCollectionViewCellDefaultStyle.BubbleImages(incomingTail: UIImage(named: "pic_chat_bubble_guest_1")!, incomingNoTail: UIImage(named: "pic_chat_bubble_guest_2")!, outgoingTail: UIImage(named: "pic_chat_bubble_master_1")!, outgoingNoTail: UIImage(named: "pic_chat_bubble_master_2")!)
+        let bubbleImages = TextMessageCollectionViewCellDefaultStyle.BubbleImages(incomingTail: UIImage(named: "pic_chat_bubble_guest_1")!, incomingNoTail: UIImage(named: "pic_chat_bubble_guest_2")!, outgoingTail: UIImage(named: "pic_chat_bubble_master_1")!, outgoingNoTail: UIImage(named: "pic_chat_bubble_master_2")!)
         //气泡文字
         let textStyle = TextMessageCollectionViewCellDefaultStyle.TextStyle(font: UIFont.systemFont(ofSize: 16), incomingColor: UIColor(red: 24.0/255.0, green: 26.0/255.0, blue: 37.0/255.0, alpha: 1), outgoingColor: UIColor.white, incomingInsets: UIEdgeInsets(top: 10, left: 19, bottom: 10, right: 15), outgoingInsets: UIEdgeInsets(top: 10, left: 19, bottom: 10, right: 15))
         
         let baseStyle = baseMessageStyle
         //这里有个坑，初始化textCellStyle 必须赋值 baseStyle，否则默认值带气泡边框
-        textMessagePresenter.textCellStyle = TextMessageCollectionViewCellDefaultStyle(bubbleImages: bubbleStyle, textStyle: textStyle, baseStyle: baseStyle)
+        let textCellStyle = TextMessageCollectionViewCellDefaultStyle(bubbleImages: bubbleImages, textStyle: textStyle, baseStyle: baseStyle)
+        textCellStyle.bubbleImageStatusStyle = .none
+        textMessagePresenter.textCellStyle = textCellStyle
 
         let photoMessagePresenter = PhotoMessagePresenterBuilder(
             viewModelBuilder: DemoPhotoMessageViewModelBuilder(),

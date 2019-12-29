@@ -89,11 +89,35 @@ open class ChatInputBar: ReusableXibView {
         self.textView.scrollsToTop = false
         self.textView.delegate = self
         self.textView.placeholderDelegate = self
+        self.textView.setTextPlaceholderFont(.systemFont(ofSize: 16, weight: .regular))
+        if #available(iOS 10.0, *) {
+            self.textView.setTextPlaceholderColor(UIColor(displayP3Red: 175/255.0, green: 175/255.0, blue: 183/255.0, alpha: 1))
+            self.textView.textColor = UIColor(displayP3Red: 24/255.0, green: 26/255.0, blue: 37/255.0, alpha: 1)
+        } else {
+            self.textView.setTextPlaceholderColor(UIColor(red: 175/255.0, green: 175/255.0, blue: 183/255.0, alpha: 1))
+            self.textView.textColor = UIColor(red: 24/255.0, green: 26/255.0, blue: 37/255.0, alpha: 1)
+        }
+        
         self.scrollView.scrollsToTop = false
         self.sendButton.isEnabled = false
-        self.textRoundView.layer.cornerRadius = 20
-        self.textRoundView.layer.borderWidth = 0.5
-        self.textRoundView.layer.borderColor = UIColor.lightGray.cgColor
+        
+        
+//        self.textRoundView.backgroundColor = .orange
+        self.textRoundView.layer.cornerRadius = 19
+        self.textRoundView.layer.borderWidth = 1
+        if #available(iOS 10.0, *) {
+            self.textRoundView.layer.borderColor = UIColor(displayP3Red: 219/255.0, green: 219/255.0, blue: 228/255.0, alpha: 1).cgColor
+        } else {
+            self.textRoundView.layer.borderColor = UIColor(red: 219/255.0, green: 219/255.0, blue: 228/255.0, alpha: 1).cgColor
+        }
+    }
+    
+    func roundedCorners(rect: CGRect, corners:UIRectCorner, radius: CGFloat) -> CALayer {
+        let maskPath = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let maskLayer = CAShapeLayer()
+        maskLayer.frame = rect
+        maskLayer.path = maskPath.cgPath
+        return maskLayer
     }
 
     open override func updateConstraints() {
@@ -142,6 +166,15 @@ open class ChatInputBar: ReusableXibView {
     open override func layoutSubviews() {
         self.updateConstraints() // Interface rotation or size class changes will reset constraints as defined in interface builder -> constraintsForVisibleTextView will be activated
         super.layoutSubviews()
+        
+        
+//        let roundShapeLayer = CAShapeLayer()
+//        roundShapeLayer.frame = self.textRoundView.bounds
+//        roundShapeLayer.fillColor = UIColor.purple.cgColor
+//        roundShapeLayer.lineWidth = 1
+//        roundShapeLayer.borderColor = UIColor.orange.cgColor
+//        self.textRoundView.layer.insertSublayer(roundShapeLayer, at: 0)
+//        self.textRoundView.layer.mask = roundedCorners(rect: self.textRoundView.bounds, corners: .allCorners, radius: 19)
     }
 
     var inputItems = [ChatInputItemProtocol]() {
