@@ -29,7 +29,7 @@ import ChattoAdditions
 final class DemoChatItemsDecorator: ChatItemsDecoratorProtocol {
     private struct Constants {
         static let shortSeparation: CGFloat = 3
-        static let normalSeparation: CGFloat = 10
+        static let normalSeparation: CGFloat = 5
         static let timeIntervalThresholdToIncreaseSeparation: TimeInterval = 120
     }
 
