@@ -82,21 +82,14 @@ open class ChatInputBar: ReusableXibView {
     override class func nibName() -> String {
         return "ChatInputBar"
     }
-
+    
+    //使用appearance修改颜色、字体等
     open override func awakeFromNib() {
         super.awakeFromNib()
         self.topBorderHeightConstraint.constant = 1 / UIScreen.main.scale
         self.textView.scrollsToTop = false
         self.textView.delegate = self
         self.textView.placeholderDelegate = self
-        self.textView.setTextPlaceholderFont(.systemFont(ofSize: 16, weight: .regular))
-        if #available(iOS 10.0, *) {
-            self.textView.setTextPlaceholderColor(UIColor(displayP3Red: 175/255.0, green: 175/255.0, blue: 183/255.0, alpha: 1))
-            self.textView.textColor = UIColor(displayP3Red: 24/255.0, green: 26/255.0, blue: 37/255.0, alpha: 1)
-        } else {
-            self.textView.setTextPlaceholderColor(UIColor(red: 175/255.0, green: 175/255.0, blue: 183/255.0, alpha: 1))
-            self.textView.textColor = UIColor(red: 24/255.0, green: 26/255.0, blue: 37/255.0, alpha: 1)
-        }
         
         self.scrollView.scrollsToTop = false
         self.sendButton.isEnabled = false

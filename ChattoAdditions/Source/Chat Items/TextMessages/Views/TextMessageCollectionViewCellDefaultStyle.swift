@@ -115,12 +115,8 @@ open class TextMessageCollectionViewCellDefaultStyle: TextMessageCollectionViewC
         } else {
             let templateKey = ImageKey.template(isIncoming: viewModel.isIncoming, showsTail: viewModel.decorationAttributes.isShowingTail)
             if let image = self.images[templateKey] {
-                if self.bubbleImageStatusStyle == .follwStatus {
-                    let image = self.createImage(templateImage: image, isIncoming: viewModel.isIncoming, status: viewModel.status, isSelected: isSelected)
-                    self.images[key] = image
-                } else {
-                    self.images[key] = image
-                }
+                let image = self.createImage(templateImage: image, isIncoming: viewModel.isIncoming, status: viewModel.status, isSelected: isSelected)
+                self.images[key] = image
                 return image
             }
         }
@@ -131,12 +127,14 @@ open class TextMessageCollectionViewCellDefaultStyle: TextMessageCollectionViewC
 
     open func createImage(templateImage image: UIImage, isIncoming: Bool, status: MessageStatus, isSelected: Bool) -> UIImage {
         var color = isIncoming ? self.baseStyle.baseColorIncoming : self.baseStyle.baseColorOutgoing
-
+        
         switch status {
         case .success:
             break
         case .failed, .sending:
-            color = color.bma_blendWithColor(UIColor.white.withAlphaComponent(0.70))
+            if self.bubbleImageStatusStyle == .follwStatus {
+                color = color.bma_blendWithColor(UIColor.white.withAlphaComponent(0.70))
+            }
         }
 
         if isSelected {
