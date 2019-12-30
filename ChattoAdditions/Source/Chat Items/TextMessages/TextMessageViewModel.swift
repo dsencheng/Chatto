@@ -26,11 +26,18 @@ import Foundation
 
 public protocol TextMessageViewModelProtocol: DecoratedMessageViewModelProtocol {
     var text: String { get }
+    var attributedString: NSAttributedString? { get }
     var cellAccessibilityIdentifier: String { get }
     var bubbleAccessibilityIdentifier: String { get }
 }
 
 open class TextMessageViewModel<TextMessageModelT: TextMessageModelProtocol>: TextMessageViewModelProtocol {
+    public var attributedString: NSAttributedString? {
+        let attr: NSMutableAttributedString = NSMutableAttributedString(string: self.text)
+        attr.addAttributes([.kern:-0.2], range: NSMakeRange(0, attr.length))
+        return attr
+    }
+    
     open var text: String {
         return self.textMessage.text
     }
