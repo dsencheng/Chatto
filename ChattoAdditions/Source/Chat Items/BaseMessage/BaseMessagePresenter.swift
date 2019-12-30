@@ -141,7 +141,7 @@ open class BaseMessagePresenter<BubbleViewT, ViewModelBuilderT, InteractionHandl
             }
             cell.onBubbleAttachmentTapped = { [weak self] (cell) in
                 guard let sSelf = self else { return }
-                sSelf.onCellBubbleAttachmentTapped(cell.bubbleAttachment.attachmentButton)
+                sSelf.onCellBubbleAttachmentTapped(cell.bubbleAttachment)
             }
             cell.onSelection = { [weak self] (cell) in
                 guard let sSelf = self else { return }

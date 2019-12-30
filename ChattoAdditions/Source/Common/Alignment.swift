@@ -33,3 +33,11 @@ public enum VerticalAlignment {
     case center
     case bottom
 }
+
+public enum Alignment {
+    case center
+    case left
+    case right
+    case top
+    case bottom
+}

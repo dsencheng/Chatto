@@ -109,9 +109,11 @@ open class BaseMessageCollectionViewCellDefaultStyle: BaseMessageCollectionViewC
     public struct AttachmentStyle {
         let size: CGSize
         let margin: UIEdgeInsets
-        public init(size: CGSize = .zero, margin: UIEdgeInsets = .zero) {
+        let alignment: Alignment
+        public init(size: CGSize = .zero, margin: UIEdgeInsets = .zero, alignment: Alignment = .center) {
             self.size = size
             self.margin = margin
+            self.alignment = alignment
         }
     }
 
@@ -228,6 +230,10 @@ open class BaseMessageCollectionViewCellDefaultStyle: BaseMessageCollectionViewC
     
     public var attachmentIconMargins: UIEdgeInsets {
         return self.attachmentStyle.margin
+    }
+    
+    public var attachmentAlignment: Alignment {
+        return self.attachmentStyle.alignment
     }
     
     open func avatarSize(viewModel: MessageViewModelProtocol) -> CGSize {

@@ -99,7 +99,7 @@ class DemoChatViewController: BaseChatViewController {
         let attchmentImages = BaseMessageCollectionViewCellDefaultStyle.BubbleAttachmentIconImages(failedNormal: UIImage(named: "ic_chat_warn_n")!, failedHighlighted: UIImage(named: "ic_chat_warn_p")!, sendingNormal: UIImage(named: "ic_chat_dialogue_load")!, sendingHighlighted: UIImage(named: "ic_chat_dialogue_load")!)
         //文字背景色
         let colors = BaseMessageCollectionViewCellDefaultStyle.Colors(incoming: UIColor.lightGray, outgoing: UIColor.orange)
-        let attachmentSytle = BaseMessageCollectionViewCellDefaultStyle.AttachmentStyle(size: CGSize(width: 32, height: 32), margin:.zero)
+        let attachmentSytle = BaseMessageCollectionViewCellDefaultStyle.AttachmentStyle(size: CGSize(width: 32, height: 32), margin:.zero, alignment: .right)
         //基本样式
         let baseMessageStyle = BaseMessageCollectionViewCellAvatarStyle(colors:colors, bubbleAttachmentIconImages: attchmentImages, attachmentStyle:attachmentSytle)
         textMessagePresenter.baseMessageStyle = baseMessageStyle

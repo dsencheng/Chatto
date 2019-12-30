@@ -31,6 +31,7 @@ public protocol BaseMessageCollectionViewCellStyleProtocol {
     func attachmentIcon(viewModel: MessageViewModelProtocol, for state: UIControl.State) -> UIImage?
     func attachmentIconSize(viewModel: MessageViewModelProtocol) -> CGSize // .zero => no attachment
     var attachmentIconMargins: UIEdgeInsets { get }
+    var attachmentAlignment: Alignment { get }
     var selectionIndicatorMargins: UIEdgeInsets { get }
     func selectionIndicatorIcon(for viewModel: MessageViewModelProtocol) -> UIImage
     func attributedStringForDate(_ date: String) -> NSAttributedString
@@ -220,7 +221,11 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: UICollectionViewCell, 
     public private(set) lazy var bubbleAttachment: BaseMessageBubbleAttachmentView = {
         let attachment = BaseMessageBubbleAttachmentView()
 //        attachment.backgroundColor = .orange
-        attachment.attachmentButton.addTarget(self, action: #selector(BaseMessageCollectionViewCell.bubbleAttachmentTapped), for: .touchUpInside)
+//        attachment.attachmentButton.addTarget(self, action: #selector(BaseMessageCollectionViewCell.bubbleAttachmentTapped), for: .touchUpInside)
+        attachment.onBubbleAttachmentTapped = {[weak self] (attachment) in
+            guard let strong = self else { return }
+            strong.onBubbleAttachmentTapped?(strong)
+        }
         return attachment
     }()
 
@@ -234,9 +239,12 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: UICollectionViewCell, 
         if self.shouldShowBubbleAttachment {
             let normal = self.baseStyle.attachmentIcon(viewModel: viewModel, for: .normal)
             let highlighted = self.baseStyle.attachmentIcon(viewModel: viewModel, for: .highlighted)
-            self.bubbleAttachment.attachmentButton.setImage(normal, for: .normal)
-            self.bubbleAttachment.attachmentButton.setImage(highlighted, for: .highlighted)
+//            self.bubbleAttachment.attachmentButton.setImage(normal, for: .normal)
+//            self.bubbleAttachment.attachmentButton.setImage(highlighted, for: .highlighted)
+            self.bubbleAttachment.activityImageView.image = normal
+            self.bubbleAttachment.activityImageView.highlightedImage = highlighted
             self.bubbleAttachment.margins = self.baseStyle.attachmentIconMargins
+            self.bubbleAttachment.attachmentAlignment = self.baseStyle.attachmentAlignment
             self.bubbleAttachment.status = viewModel.status
             self.bubbleAttachment.alpha = 1
         } else {
