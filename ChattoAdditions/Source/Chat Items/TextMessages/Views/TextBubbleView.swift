@@ -169,11 +169,7 @@ public final class TextBubbleView: UIView, MaximumLayoutWidthSpecificable, Backg
         }
 
         if needsToUpdateText || self.textView.text != viewModel.text {
-            if let attr = viewModel.attributedString {
-                self.textView.attributedText = attr
-            } else {
-                self.textView.text = viewModel.text
-            }
+            self.textView.text = viewModel.text
         }
 
         let textInsets = style.textInsets(viewModel: viewModel, isSelected: self.selected)
