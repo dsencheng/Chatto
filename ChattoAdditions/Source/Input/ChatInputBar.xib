@@ -49,7 +49,7 @@
                     <constraints>
                         <constraint firstItem="37S-Jd-J5N" firstAttribute="top" relation="greaterThanOrEqual" secondItem="VEc-z3-OQW" secondAttribute="top" constant="4" id="Ffh-nF-DFi"/>
                         <constraint firstItem="37S-Jd-J5N" firstAttribute="leading" secondItem="hHg-ZO-47L" secondAttribute="trailing" constant="12" id="HVh-jg-YUo"/>
-                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="110" id="Mhs-He-CVf"/>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="136" id="Mhs-He-CVf"/>
                         <constraint firstAttribute="bottom" secondItem="37S-Jd-J5N" secondAttribute="bottom" constant="9" id="Uhu-G3-hR9"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="52" id="YRR-wj-2tK"/>
                         <constraint firstAttribute="trailing" secondItem="37S-Jd-J5N" secondAttribute="trailing" constant="12" id="nFV-QD-eFc"/>

@@ -302,7 +302,7 @@ public extension BaseMessageCollectionViewCellDefaultStyle { // Default values
         return BaseMessageCollectionViewCellLayoutConstants(horizontalMargin: 12,
                                                             horizontalInterspacing: 8,
                                                             horizontalTimestampMargin: 12,
-                                                            maxContainerWidthPercentageForBubbleView: 0.68)
+                                                            maxContainerWidthPercentageForBubbleView: 0.73)
     }
 
     private static let selectionIndicatorIconSelected = UIImage(named: "base-message-checked-icon", in: Bundle(for: Class.self), compatibleWith: nil)!.bma_tintWithColor(BaseMessageCollectionViewCellDefaultStyle.defaultOutgoingColor)
