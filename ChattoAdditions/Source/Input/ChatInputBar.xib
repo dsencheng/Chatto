@@ -106,10 +106,10 @@
                 </mask>
             </variation>
             <connections>
-                <outlet property="scrollView" destination="WNX-pj-5AB" id="Qqy-Ny-mng"/>
+                <outlet property="scrollView" destination="WNX-pj-5AB" id="lrI-Na-tEH"/>
                 <outlet property="sendButton" destination="37S-Jd-J5N" id="hiX-1w-7Nk"/>
                 <outlet property="tabBarContainerHeightConstraint" destination="vwa-F7-EIB" id="d3G-fs-hEH"/>
-                <outlet property="textRoundView" destination="hHg-ZO-47L" id="eC6-CS-eNb"/>
+                <outlet property="textRoundView" destination="hHg-ZO-47L" id="zkG-tQ-6Sq"/>
                 <outlet property="textView" destination="fsh-hH-hKG" id="QMH-G9-ADs"/>
                 <outlet property="topBorderHeightConstraint" destination="IIv-qg-Tlp" id="qiB-dH-AHS"/>
                 <outletCollection property="constraintsForHiddenTextView" destination="gpt-vU-KzZ" collectionClass="NSMutableArray" id="EzL-hX-Wle"/>

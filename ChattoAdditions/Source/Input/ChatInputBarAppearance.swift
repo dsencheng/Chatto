@@ -45,7 +45,7 @@ public struct ChatInputBarAppearance {
 
     public struct TabBarAppearance {
         public var interItemSpacing: CGFloat = 10
-        public var height: CGFloat = 44
+//        public var height: CGFloat = 44
         public var contentInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
     }
 
@@ -54,12 +54,12 @@ public struct ChatInputBarAppearance {
         public var textColor = UIColor.black
         public var tintColor: UIColor?
         public var borderColor = UIColor.clear
-        public var borderWidth: CGFloat = 0
+        public var borderWidth: CGFloat = 1
         public var placeholderFont = UIFont.systemFont(ofSize: 16)
         public var placeholderColor = UIColor.gray
         public var placeholderText = ""
-        public var textInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        public var height: CGFloat = 38
+//        public var textInsets = UIEdgeInsets(top: 9, left: 15, bottom: -9, right: -15)
+//        public var height: CGFloat = 38
         public let accessibilityIdentifier = "chatto.inputbar.inputfield.text"
     }
 

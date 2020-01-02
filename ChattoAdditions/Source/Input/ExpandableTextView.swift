@@ -24,15 +24,9 @@
 
 import UIKit
 
-public protocol ExpandableTextViewPlaceholderDelegate: class {
-    func expandableTextViewDidShowPlaceholder(_ textView: ExpandableTextView)
-    func expandableTextViewDidHidePlaceholder(_ textView: ExpandableTextView)
-}
-
 open class ExpandableTextView: UITextView {
 
-    private let placeholder: UITextView = UITextView()
-    public weak var placeholderDelegate: ExpandableTextViewPlaceholderDelegate?
+    private let placeholder = UILabel()
 
     public var pasteActionInterceptor: PasteActionInterceptor?
 
@@ -64,22 +58,17 @@ open class ExpandableTextView: UITextView {
         self.updateBoundsToFitSize()
         self.configurePlaceholder()
         self.updatePlaceholderVisibility()
+        
     }
 
     open override func didMoveToWindow() {
         super.didMoveToWindow()
-
-        if self.isPlaceholderViewAttached {
-            self.placeholderDelegate?.expandableTextViewDidShowPlaceholder(self)
-        } else {
-            self.placeholderDelegate?.expandableTextViewDidHidePlaceholder(self)
-        }
     }
 
     override open func layoutSubviews() {
         super.layoutSubviews()
         self.placeholder.frame = self.bounds
-        self.tintColor = .orange
+        
     }
 
     override open var intrinsicContentSize: CGSize {
@@ -94,16 +83,10 @@ open class ExpandableTextView: UITextView {
 
     open var placeholderText: String {
         get {
-            return self.placeholder.text
+            return self.placeholder.text ?? ""
         }
         set {
             self.placeholder.text = newValue
-        }
-    }
-
-    override open var textContainerInset: UIEdgeInsets {
-        didSet {
-            self.configurePlaceholder()
         }
     }
 
@@ -195,16 +178,16 @@ open class ExpandableTextView: UITextView {
         self.bounds.size = self.sizeThatFits(self.bounds.size)
     }
 
-    private func scrollToCaret() {
-        if let textRange = self.selectedTextRange {
-            var rect = caretRect(for: textRange.end)
-            rect = CGRect(origin: rect.origin, size: CGSize(width: rect.width, height: rect.height + textContainerInset.bottom))
-            self.scrollRectToVisible(rect, animated: false)
-//            if textRange.end == self.endOfDocument, self.text.count > 1 {
-//                self.scrollRangeToVisible(NSMakeRange(self.text.count - 1, 1))
-//            }
-        }
-    }
+//    private func scrollToCaret() {
+//        if let textRange = self.selectedTextRange {
+//            var rect = caretRect(for: textRange.end)
+//            rect = CGRect(origin: rect.origin, size: CGSize(width: rect.width, height: rect.height + textContainerInset.bottom))
+//            self.scrollRectToVisible(rect, animated: false)
+////            if textRange.end == self.endOfDocument, self.text.count > 1 {
+////                self.scrollRangeToVisible(NSMakeRange(self.text.count - 1, 1))
+////            }
+//        }
+//    }
 
     private func updatePlaceholderVisibility() {
         if self.text == "" {
@@ -215,21 +198,12 @@ open class ExpandableTextView: UITextView {
     }
 
     private func showPlaceholder() {
-        let wasAttachedBeforeShowing = self.isPlaceholderViewAttached
         self.addSubview(self.placeholder)
-
-        if !wasAttachedBeforeShowing {
-            self.placeholderDelegate?.expandableTextViewDidShowPlaceholder(self)
-        }
     }
 
     private func hidePlaceholder() {
-        let wasAttachedBeforeHiding = self.isPlaceholderViewAttached
         self.placeholder.removeFromSuperview()
 
-        if wasAttachedBeforeHiding {
-            self.placeholderDelegate?.expandableTextViewDidHidePlaceholder(self)
-        }
     }
 
     private var isPlaceholderViewAttached: Bool {
@@ -238,11 +212,8 @@ open class ExpandableTextView: UITextView {
 
     private func configurePlaceholder() {
         self.placeholder.translatesAutoresizingMaskIntoConstraints = false
-        self.placeholder.isEditable = false
-        self.placeholder.isSelectable = false
         self.placeholder.isUserInteractionEnabled = false
         self.placeholder.textAlignment = self.textAlignment
-        self.placeholder.textContainerInset = self.textContainerInset
         self.placeholder.backgroundColor = UIColor.clear
     }
 
@@ -254,3 +225,4 @@ open class ExpandableTextView: UITextView {
         return point.clamped(to: self.bounds.inset(by: self.textContainerInset))
     }
 }
+
