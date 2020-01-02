@@ -89,6 +89,13 @@ open class ChatInputBar: ReusableXibView {
         self.topBorderHeightConstraint.constant = 1 / UIScreen.main.scale
         self.textView.scrollsToTop = false
         self.textView.delegate = self
+        self.textView.textContainer.lineFragmentPadding = 0
+        self.textView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 11)
+//        self.textView.layoutManager.allowsNonContiguousLayout = false
+        self.textView.translatesAutoresizingMaskIntoConstraints = false
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 3
+        self.textView.typingAttributes = [NSAttributedString.Key.paragraphStyle:paragraphStyle]
         
         self.scrollView.scrollsToTop = false
         self.sendButton.isEnabled = false
@@ -325,5 +332,14 @@ extension ChatInputBar: UITextViewDelegate {
         return UInt(nextCount) <= maxCharactersCount
     }
 
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        //修改指示器颜色
+        if let indicator = scrollView.subviews.last {
+            if let colorView = indicator.subviews.last {
+                colorView.backgroundColor = UIColor.bma_color(rgb: 0xDBDBE4)
+            }
+            indicator.layer.cornerRadius = indicator.bounds.midX
+        }
+    }
 }
 

@@ -17,21 +17,24 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="98"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hHg-ZO-47L">
-                            <rect key="frame" x="12" y="8" width="530" height="82"/>
+                            <rect key="frame" x="12" y="7" width="530" height="84"/>
                             <subviews>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fsh-hH-hKG" userLabel="TextView" customClass="ExpandableTextView" customModule="ChattoAdditions" customModuleProvider="target">
-                                    <rect key="frame" x="10" y="9" width="510" height="64"/>
+                                    <rect key="frame" x="15" y="9" width="513" height="66"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="FWu-Uc-0FF"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="fsh-hH-hKG" firstAttribute="leading" secondItem="hHg-ZO-47L" secondAttribute="leading" constant="10" id="6VG-bL-84u"/>
+                                <constraint firstItem="fsh-hH-hKG" firstAttribute="leading" secondItem="hHg-ZO-47L" secondAttribute="leading" constant="15" id="6VG-bL-84u"/>
                                 <constraint firstAttribute="bottom" secondItem="fsh-hH-hKG" secondAttribute="bottom" constant="9" id="80u-LR-FSP"/>
                                 <constraint firstItem="fsh-hH-hKG" firstAttribute="top" secondItem="hHg-ZO-47L" secondAttribute="top" constant="9" id="KLw-Sy-8aj"/>
-                                <constraint firstAttribute="trailing" secondItem="fsh-hH-hKG" secondAttribute="trailing" constant="10" id="leA-rQ-TwB"/>
+                                <constraint firstAttribute="trailing" secondItem="fsh-hH-hKG" secondAttribute="trailing" constant="2" id="leA-rQ-TwB"/>
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37S-Jd-J5N">
@@ -49,13 +52,11 @@
                     <constraints>
                         <constraint firstItem="37S-Jd-J5N" firstAttribute="top" relation="greaterThanOrEqual" secondItem="VEc-z3-OQW" secondAttribute="top" constant="4" id="Ffh-nF-DFi"/>
                         <constraint firstItem="37S-Jd-J5N" firstAttribute="leading" secondItem="hHg-ZO-47L" secondAttribute="trailing" constant="12" id="HVh-jg-YUo"/>
-                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="136" id="Mhs-He-CVf"/>
                         <constraint firstAttribute="bottom" secondItem="37S-Jd-J5N" secondAttribute="bottom" constant="9" id="Uhu-G3-hR9"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="52" id="YRR-wj-2tK"/>
                         <constraint firstAttribute="trailing" secondItem="37S-Jd-J5N" secondAttribute="trailing" constant="12" id="nFV-QD-eFc"/>
                         <constraint firstItem="hHg-ZO-47L" firstAttribute="leading" secondItem="VEc-z3-OQW" secondAttribute="leading" constant="12" id="ph4-jF-OY9"/>
-                        <constraint firstItem="hHg-ZO-47L" firstAttribute="top" secondItem="VEc-z3-OQW" secondAttribute="top" constant="8" id="q6O-hq-qvp"/>
-                        <constraint firstAttribute="bottom" secondItem="hHg-ZO-47L" secondAttribute="bottom" constant="8" id="qDq-8I-Spn"/>
+                        <constraint firstItem="hHg-ZO-47L" firstAttribute="top" secondItem="VEc-z3-OQW" secondAttribute="top" constant="7" id="q6O-hq-qvp"/>
+                        <constraint firstAttribute="bottom" secondItem="hHg-ZO-47L" secondAttribute="bottom" constant="7" id="qDq-8I-Spn"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hkz-tq-X6j" userLabel="Tab selector container">

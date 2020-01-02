@@ -55,6 +55,7 @@ open class ExpandableTextView: UITextView {
         self.isScrollEnabled = true
         self.scrollsToTop = false
         NotificationCenter.default.addObserver(self, selector: #selector(ExpandableTextView.textDidChange), name: UITextView.textDidChangeNotification, object: self)
+        self.addSubview(self.placeholder)
         self.updateBoundsToFitSize()
         self.configurePlaceholder()
         self.updatePlaceholderVisibility()
@@ -67,9 +68,10 @@ open class ExpandableTextView: UITextView {
 
     override open func layoutSubviews() {
         super.layoutSubviews()
-        self.placeholder.frame = self.bounds
-        
+        self.placeholder.frame = self.bounds.inset(by: UIEdgeInsets(top: 0, left: 6, bottom: 0, right: 0))
     }
+    
+    
 
     override open var intrinsicContentSize: CGSize {
         return self.contentSize
@@ -131,7 +133,7 @@ open class ExpandableTextView: UITextView {
     @objc func textDidChange() {
 //        self.updateBoundsToFitSize()
         self.updatePlaceholderVisibility()
-//        self.scrollToCaret()
+        self.scrollToCaret()
 
         // Bugfix:
         // 1. Open keyboard
@@ -178,16 +180,16 @@ open class ExpandableTextView: UITextView {
         self.bounds.size = self.sizeThatFits(self.bounds.size)
     }
 
-//    private func scrollToCaret() {
-//        if let textRange = self.selectedTextRange {
-//            var rect = caretRect(for: textRange.end)
-//            rect = CGRect(origin: rect.origin, size: CGSize(width: rect.width, height: rect.height + textContainerInset.bottom))
-//            self.scrollRectToVisible(rect, animated: false)
-////            if textRange.end == self.endOfDocument, self.text.count > 1 {
-////                self.scrollRangeToVisible(NSMakeRange(self.text.count - 1, 1))
-////            }
-//        }
-//    }
+    private func scrollToCaret() {
+        if let textRange = self.selectedTextRange {
+            var rect = caretRect(for: textRange.end)
+            rect = CGRect(origin: rect.origin, size: CGSize(width: rect.width, height: rect.height + textContainerInset.bottom))
+            self.scrollRectToVisible(rect, animated: false)
+//            if textRange.end == self.endOfDocument, self.text.count > 1 {
+//                self.scrollRangeToVisible(NSMakeRange(self.text.count - 1, 1))
+//            }
+        }
+    }
 
     private func updatePlaceholderVisibility() {
         if self.text == "" {
@@ -198,12 +200,11 @@ open class ExpandableTextView: UITextView {
     }
 
     private func showPlaceholder() {
-        self.addSubview(self.placeholder)
+        self.placeholder.isHidden = false
     }
 
     private func hidePlaceholder() {
-        self.placeholder.removeFromSuperview()
-
+        self.placeholder.isHidden = true
     }
 
     private var isPlaceholderViewAttached: Bool {
@@ -224,5 +225,6 @@ open class ExpandableTextView: UITextView {
         guard self.bounds.contains(point) else { return point }
         return point.clamped(to: self.bounds.inset(by: self.textContainerInset))
     }
+    
 }
 

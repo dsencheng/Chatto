@@ -62,11 +62,11 @@ final class DemoChatItemsDecorator: ChatItemsDecoratorProtocol {
                     showsTail = true
                 }
                 //MARK : 修改日期分隔
-//                if let previousMessage = prev as? MessageModelProtocol {
-//                    addTimeSeparator = !calendar.isDate(currentMessage.date, inSameDayAs: previousMessage.date)
-//                } else {
-//                    addTimeSeparator = true
-//                }
+                if let previousMessage = prev as? MessageModelProtocol {
+                    addTimeSeparator = !calendar.isDate(currentMessage.date, inSameDayAs: previousMessage.date)
+                } else {
+                    addTimeSeparator = true
+                }
                 
                 if let previousMessage = prev as? MessageModelProtocol {
                     //测试超过5分钟插入一个
