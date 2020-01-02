@@ -235,9 +235,6 @@ open class ChatInputBar: ReusableXibView {
         self.delegate?.inputBarSendButtonPressed(self)
     }
 
-    public func setTextViewPlaceholderAccessibilityIdentifer(_ accessibilityIdentifer: String) {
-        self.textView.setTextPlaceholderAccessibilityIdentifier(accessibilityIdentifer)
-    }
 }
 
 // MARK: - ChatInputItemViewDelegate

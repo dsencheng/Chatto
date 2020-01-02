@@ -26,7 +26,8 @@ import UIKit
 
 open class ExpandableTextView: UITextView {
 
-    private let placeholder = UILabel()
+    private var placeholder = ""
+    private var placeholderAttribute: [NSAttributedString.Key:Any] = [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor:UIColor.lightText]
 
     public var pasteActionInterceptor: PasteActionInterceptor?
 
@@ -55,9 +56,7 @@ open class ExpandableTextView: UITextView {
         self.isScrollEnabled = true
         self.scrollsToTop = false
         NotificationCenter.default.addObserver(self, selector: #selector(ExpandableTextView.textDidChange), name: UITextView.textDidChangeNotification, object: self)
-        self.addSubview(self.placeholder)
         self.updateBoundsToFitSize()
-        self.configurePlaceholder()
         self.updatePlaceholderVisibility()
         
     }
@@ -68,9 +67,14 @@ open class ExpandableTextView: UITextView {
 
     override open func layoutSubviews() {
         super.layoutSubviews()
-        self.placeholder.frame = self.bounds.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
     }
     
+    open override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        if self.text.count == 0 {
+            self.placeholder.draw(in: rect, withAttributes: self.placeholderAttribute)
+        }
+    }
     
 
     override open var intrinsicContentSize: CGSize {
@@ -85,18 +89,18 @@ open class ExpandableTextView: UITextView {
 
     open var placeholderText: String {
         get {
-            return self.placeholder.text ?? ""
+            return self.placeholder
         }
         set {
-            self.placeholder.text = newValue
+            self.placeholder = newValue
         }
     }
 
-    override open var textAlignment: NSTextAlignment {
-        didSet {
-            self.configurePlaceholder()
-        }
-    }
+//    override open var textAlignment: NSTextAlignment {
+//        didSet {
+//            self.configurePlaceholder()
+//        }
+//    }
 
     override open func closestPosition(to point: CGPoint) -> UITextPosition? {
         let pointInTextContainer = self.closestPointInTextContainer(to: point)
@@ -113,25 +117,20 @@ open class ExpandableTextView: UITextView {
         return super.characterRange(at: pointInTextContainer)
     }
 
-    @available(*, deprecated, message: "use placeholderText property instead")
-    open func setTextPlaceholder(_ textPlaceholder: String) {
-        self.placeholder.text = textPlaceholder
-    }
 
     open func setTextPlaceholderColor(_ color: UIColor) {
-        self.placeholder.textColor = color
+//        self.placeholder.textColor = color
+        self.placeholderAttribute[NSAttributedString.Key.foregroundColor] = color
     }
 
     open func setTextPlaceholderFont(_ font: UIFont) {
-        self.placeholder.font = font
+//        self.placeholder.font = font
+        self.placeholderAttribute[NSAttributedString.Key.font] = font
     }
 
-    open func setTextPlaceholderAccessibilityIdentifier(_ accessibilityIdentifier: String) {
-        self.placeholder.accessibilityIdentifier = accessibilityIdentifier
-    }
 
     @objc func textDidChange() {
-//        self.updateBoundsToFitSize()
+        self.updateBoundsToFitSize()
         self.updatePlaceholderVisibility()
         self.scrollToCaret()
 
@@ -192,30 +191,7 @@ open class ExpandableTextView: UITextView {
     }
 
     private func updatePlaceholderVisibility() {
-        if self.text == "" {
-            self.showPlaceholder()
-        } else {
-            self.hidePlaceholder()
-        }
-    }
-
-    private func showPlaceholder() {
-        self.placeholder.isHidden = false
-    }
-
-    private func hidePlaceholder() {
-        self.placeholder.isHidden = true
-    }
-
-    private var isPlaceholderViewAttached: Bool {
-        return self.placeholder.superview != nil
-    }
-
-    private func configurePlaceholder() {
-        self.placeholder.translatesAutoresizingMaskIntoConstraints = false
-        self.placeholder.isUserInteractionEnabled = false
-        self.placeholder.textAlignment = self.textAlignment
-        self.placeholder.backgroundColor = UIColor.clear
+        setNeedsDisplay()
     }
 
     // When you press on inset area inside UITextView, cursor is automatically moved to beginning of the content.
