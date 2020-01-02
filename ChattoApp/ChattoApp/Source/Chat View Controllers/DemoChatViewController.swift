@@ -61,8 +61,7 @@ class DemoChatViewController: BaseChatViewController {
         appearance.sendButtonAppearance.selectedImage = UIImage(named: "ic_chat_dialogue_send_n")!
         appearance.sendButtonAppearance.highlightedImage = UIImage(named: "ic_chat_dialogue_send_n")!
         appearance.sendButtonAppearance.disabledImage = UIImage(named: "ic_chat_dialogue_send_p")!
-        appearance.textInputAppearance.tintColor = UIColor.bma_color(rgb: 0xFF591D)
-        appearance.textInputAppearance.borderColor = UIColor.bma_color(rgb: 0xDBDBE4)
+        
         appearance.textInputAppearance.placeholderText = NSLocalizedString("Type a message...", comment: "")
 //        appearance.tabBarAppearance.height = 0.0
         if self.shouldUseAlternativePresenter {

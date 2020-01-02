@@ -72,6 +72,16 @@ open class ChatInputBar: ReusableXibView {
     
     fileprivate var tabBarHeight : CGFloat = 0
 
+    lazy fileprivate var indicatorImage: UIImage = {
+        let rect = CGRect(origin: .zero, size: CGSize(width: 2, height: 2))
+       UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
+       UIColor.bma_color(rgb: 0xDBDBE4).setFill()
+       UIRectFill(rect)
+       let image = UIGraphicsGetImageFromCurrentImageContext()
+       UIGraphicsEndImageContext()
+        return image!
+    }()
+    
     class open func loadNib() -> ChatInputBar {
         let view = Bundle(for: self).loadNibNamed(self.nibName(), owner: nil, options: nil)!.first as! ChatInputBar
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -93,9 +103,9 @@ open class ChatInputBar: ReusableXibView {
         self.textView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 11)
 //        self.textView.layoutManager.allowsNonContiguousLayout = false
         self.textView.translatesAutoresizingMaskIntoConstraints = false
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 3
-        self.textView.typingAttributes = [NSAttributedString.Key.paragraphStyle:paragraphStyle]
+//        let paragraphStyle = NSMutableParagraphStyle()
+//        paragraphStyle.lineSpacing = 2
+//        self.textView.typingAttributes = [NSAttributedString.Key.paragraphStyle:paragraphStyle]
         
         self.scrollView.scrollsToTop = false
         self.sendButton.isEnabled = false
@@ -335,9 +345,12 @@ extension ChatInputBar: UITextViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         //修改指示器颜色
         if let indicator = scrollView.subviews.last {
-            if let colorView = indicator.subviews.last {
+            if let imageView = indicator as? UIImageView {
+                imageView.image = indicatorImage
+            }else if let colorView = indicator.subviews.last {
                 colorView.backgroundColor = UIColor.bma_color(rgb: 0xDBDBE4)
             }
+            
             indicator.layer.cornerRadius = indicator.bounds.midX
         }
     }

@@ -68,7 +68,7 @@ open class ExpandableTextView: UITextView {
 
     override open func layoutSubviews() {
         super.layoutSubviews()
-        self.placeholder.frame = self.bounds.inset(by: UIEdgeInsets(top: 0, left: 6, bottom: 0, right: 0))
+        self.placeholder.frame = self.bounds.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
     }
     
     
